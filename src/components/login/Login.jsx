@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Mail, Lock, Loader2 } from "lucide-react";
 import api from "../../api";
 import { Logo } from "../ui/atoms/logo/Logo";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate()
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -34,12 +36,16 @@ export default function Login() {
       setLoading(true);
       const res = await api.post("/users/login", form);
       console.log("Login success:", res.data);
+      if(res.data.user) {
+        localStorage.setItem("user", user)
+        navigate('/dashboard')
+      }
 
       // Example: store token (adjust based on backend)
     //   localStorage.setItem("token", res.data.token);
 
       // redirect (you can use react-router)
-      window.location.href = "/dashboard";
+      // window.location.href = "/dashboard";
     } catch (err) {
       console.error(err);
       setErrors({ api: err.response?.data?.message || "Login failed" });

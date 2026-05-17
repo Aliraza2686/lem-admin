@@ -25,20 +25,20 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Logo } from '../../components/ui/atoms/logo/Logo'
 import { Link, useLocation } from 'react-router-dom'
+import { handleLogout } from '../../axios/instance'
 
 
 const teams = [
-//   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-//   { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-//   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+  //   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
+  //   { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
+  //   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
 ]
 
 const userNavigation = [
-  { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Your profile', href: '#', onClick: null },
+  { name: 'Sign out', href: '#', onClick: handleLogout },
 ]
 
 function classNames(...classes) {
@@ -51,13 +51,13 @@ export default function SidebarLayout({ children }) {
   const location = useLocation()
 
   const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: location?.pathname?.includes('dashboard') },
-  { name: 'Visitors', href: '/visitors', icon: UsersIcon, current: location?.pathname?.includes('visitors')  },
-//   { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-//   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-//   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-//   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
-]
+    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: location?.pathname?.includes('dashboard') },
+    { name: 'Visitors', href: '/visitors', icon: UsersIcon, current: location?.pathname?.includes('visitors') },
+    //   { name: 'Projects', href: '#', icon: FolderIcon, current: false },
+    //   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
+    //   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
+    //   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+  ]
 
   return (
     <>
@@ -78,7 +78,7 @@ export default function SidebarLayout({ children }) {
 
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4 dark:bg-gray-900">
                 <div className="flex h-16 items-center">
-                 <Logo />
+                  <Logo />
                 </div>
 
                 <nav className="flex flex-1 flex-col">
@@ -100,12 +100,11 @@ export default function SidebarLayout({ children }) {
 
         {/* DESKTOP SIDEBAR */}
         <div
-          className={`hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex ${
-            collapsed ? 'lg:w-20' : 'lg:w-72'
-          } lg:flex-col transition-all duration-300`}
+          className={`hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex ${collapsed ? 'lg:w-20' : 'lg:w-72'
+            } lg:flex-col transition-all duration-300`}
         >
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-3 pb-4 dark:bg-gray-900">
-            
+
             {/* LOGO + TOGGLE */}
             <div className="flex h-16 items-center justify-between">
               {!collapsed && (
@@ -131,7 +130,7 @@ export default function SidebarLayout({ children }) {
                   <ul className="space-y-1">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                           <Link to={item?.href} 
+                        <Link to={item?.href}
                           title={item.name}
                           className={classNames(
                             'group flex items-center rounded-md p-2 text-sm font-semibold',
@@ -211,11 +210,14 @@ export default function SidebarLayout({ children }) {
                 </MenuButton>
 
                 <MenuItems className="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-md">
-                  {userNavigation.map((item) => (
-                    <MenuItem key={item.name}>
-                      <a className="block px-3 py-2 text-sm hover:bg-gray-100">
+                  {userNavigation?.map((item) => (
+                    <MenuItem key={item?.name}>
+                      <div
+                        onClick={() => item?.onClick?.()}
+                        className="block px-3 py-2 text-sm hover:bg-gray-100"
+                      >
                         {item.name}
-                      </a>
+                      </div>
                     </MenuItem>
                   ))}
                 </MenuItems>
