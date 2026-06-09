@@ -35,9 +35,12 @@ export default function Login() {
     try {
       setLoading(true);
       const res = await api.post("/users/login", form);
-      console.log("Login success:", res.data);
-      if(res.data.user) {
-        localStorage.setItem("user", user)
+      // console.log("Login success:", res.data);
+      const data = await res.data
+      if(data.user) {
+        setErrors(null)
+        console.info(data, "datauser")
+        localStorage.setItem("user", JSON.stringify(data?.user))
         navigate('/dashboard')
       }
 

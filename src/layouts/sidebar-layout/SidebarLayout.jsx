@@ -24,9 +24,10 @@ import {
   XMarkIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline'
 import { Logo } from '../../components/ui/atoms/logo/Logo'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { handleLogout } from '../../axios/instance'
 
 
@@ -36,10 +37,6 @@ const teams = [
   //   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
 ]
 
-const userNavigation = [
-  { name: 'Your profile', href: '#', onClick: null },
-  { name: 'Sign out', href: '#', onClick: handleLogout },
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -49,15 +46,22 @@ export default function SidebarLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: location?.pathname?.includes('dashboard') },
     { name: 'Visitors', href: '/visitors', icon: UsersIcon, current: location?.pathname?.includes('visitors') },
+    { name: 'Profile', href: '/profile', icon: UserIcon, current: location?.pathname?.includes('profile') },
     //   { name: 'Projects', href: '#', icon: FolderIcon, current: false },
     //   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
     //   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
     //   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
   ]
+
+  const userNavigation = [
+  { name: 'Your profile', href: '/profile', onClick: navigate('/profile') },
+  { name: 'Sign out', href: '#', onClick: handleLogout },
+]
 
   return (
     <>
@@ -211,9 +215,9 @@ export default function SidebarLayout({ children }) {
 
                 <MenuItems className="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-md">
                   {userNavigation?.map((item) => (
-                    <MenuItem key={item?.name}>
+                    <MenuItem key={item?.name}  onClick={() => item?.onClick?.()}>
                       <div
-                        onClick={() => item?.onClick?.()}
+                       
                         className="block px-3 py-2 text-sm hover:bg-gray-100"
                       >
                         {item.name}

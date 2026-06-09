@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Pagination from '../../components/ui/molecules/Pagination'
 import { instance } from '../../axios/instance'
 
-const PAGE_SIZE = 5
+const PAGE_SIZE = 10
 
 export default function VisitorsTable() {
   const [data, setData] = useState([])
@@ -45,6 +45,11 @@ export default function VisitorsTable() {
         Visitors
       </h2> */}
 
+
+<div className='bg-green-900/5 rounded-xl py-1 px-2 flex justfiy-center items-center w-fit'>  
+  <strong>Total :</strong>
+  <div className='ml-2'> {Number(totalPages) * Number(PAGE_SIZE)} </div>
+</div>
       {/* TABLE */}
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
