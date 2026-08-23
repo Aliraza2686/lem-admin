@@ -1,0 +1,32 @@
+import { motion } from "framer-motion";
+import { FilePlus2, SearchX } from "lucide-react";
+import { Link } from "react-router-dom";
+
+export default function ArticleEmptyState({ filtered }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 bg-white/60 px-6 py-20 text-center"
+    >
+      <div className="flex size-16 items-center justify-center rounded-full bg-indigo-50 text-indigo-500">
+        {filtered ? <SearchX className="size-8" /> : <FilePlus2 className="size-8" />}
+      </div>
+      <h3 className="mt-4 text-base font-semibold text-gray-900">
+        {filtered ? "No articles match your filters" : "No articles yet"}
+      </h3>
+      <p className="mt-1 max-w-sm text-sm text-gray-500">
+        {filtered
+          ? "Try adjusting or clearing your search and filters to see more results."
+          : "Get started by writing your first article for the blog."}
+      </p>
+      {!filtered && (
+        <Link to="/articles/new" className="mt-5 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700">
+          <FilePlus2 className="size-4" />
+          Write your first article
+        </Link>
+      )}
+    </motion.div>
+  );
+}

@@ -17,7 +17,9 @@ import {
   CalendarIcon,
   ChartPieIcon,
   Cog6ToothIcon,
+  CubeIcon,
   DocumentDuplicateIcon,
+  NewspaperIcon,
   FolderIcon,
   HomeIcon,
   UsersIcon,
@@ -50,6 +52,8 @@ export default function SidebarLayout({ children }) {
 
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: location?.pathname?.includes('dashboard') },
+    { name: 'Products', href: '/products', icon: CubeIcon, current: location?.pathname?.includes('products') },
+    { name: 'Articles', href: '/articles', icon: NewspaperIcon, current: location?.pathname?.includes('articles') },
     { name: 'Visitors', href: '/visitors', icon: UsersIcon, current: location?.pathname?.includes('visitors') },
     { name: 'Profile', href: '/profile', icon: UserIcon, current: location?.pathname?.includes('profile') },
     //   { name: 'Projects', href: '#', icon: FolderIcon, current: false },
@@ -59,7 +63,7 @@ export default function SidebarLayout({ children }) {
   ]
 
   const userNavigation = [
-  { name: 'Your profile', href: '/profile', onClick: navigate('/profile') },
+  { name: 'Your profile', href: '/profile', onClick: () => navigate('/profile') },
   { name: 'Sign out', href: '#', onClick: handleLogout },
 ]
 
