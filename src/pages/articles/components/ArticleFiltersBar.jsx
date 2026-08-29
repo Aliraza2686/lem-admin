@@ -36,25 +36,25 @@ export default function ArticleFiltersBar({
             value={search}
             onChange={(e) => onSearch(e.target.value)}
             placeholder="Search by title, excerpt, slug..."
-            className="w-full rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/10"
+            className="w-full rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm outline-none transition-glow focus:border-glow focus:shadow-glow-sm"
           />
         </div>
 
-        <select value={status} onChange={(e) => onStatus(e.target.value)} className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10">
+        <select value={status} onChange={(e) => onStatus(e.target.value)} className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none transition-glow focus:border-glow focus:shadow-glow-sm">
           <option value="">All statuses</option>
           <option value="draft">Draft</option>
           <option value="published">Published</option>
           <option value="archived">Archived</option>
         </select>
 
-        <select value={category} onChange={(e) => onCategory(e.target.value)} className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10">
+        <select value={category} onChange={(e) => onCategory(e.target.value)} className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none transition-glow focus:border-glow focus:shadow-glow-sm">
           <option value="">All categories</option>
           {categories.map((c) => (
             <option key={c} value={c}>{c}</option>
           ))}
         </select>
 
-        <select value={tag} onChange={(e) => onTag(e.target.value)} className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10">
+        <select value={tag} onChange={(e) => onTag(e.target.value)} className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none transition-glow focus:border-glow focus:shadow-glow-sm">
           <option value="">All tags</option>
           {tags.map((t) => (
             <option key={t} value={t}>{t}</option>
@@ -75,7 +75,7 @@ export default function ArticleFiltersBar({
 
         <div className="relative">
           <ArrowUpDown className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-gray-400" />
-          <select value={sort} onChange={(e) => onSort(e.target.value)} className="rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm text-gray-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10">
+          <select value={sort} onChange={(e) => onSort(e.target.value)} className="rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm text-gray-700 outline-none transition-glow focus:border-glow focus:shadow-glow-sm">
             {SORT_OPTIONS.map((s) => (
               <option key={s.value} value={s.value}>{s.label}</option>
             ))}

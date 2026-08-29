@@ -26,7 +26,7 @@ export default function ViewToggle({ value, onChange }) {
             {active && (
               <motion.div
                 layoutId="view-toggle-pill"
-                className="absolute inset-0 -z-10 rounded-md bg-white shadow-sm ring-1 ring-gray-200"
+                className="absolute inset-0 -z-10 rounded-md bg-white shadow-glow-sm ring-1 ring-glow/20"
                 transition={{ type: "spring", stiffness: 500, damping: 35 }}
               />
             )}

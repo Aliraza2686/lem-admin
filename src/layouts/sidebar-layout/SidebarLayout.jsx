@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import {
   Dialog,
   DialogBackdrop,
@@ -72,35 +73,30 @@ export default function SidebarLayout({ children }) {
       <div>
         {/* MOBILE SIDEBAR */}
         <Dialog open={sidebarOpen} onClose={setSidebarOpen} className="relative z-50 lg:hidden">
-          <DialogBackdrop className="fixed inset-0 bg-gray-900/80" />
+          <DialogBackdrop
+            transition
+            className="fixed inset-0 bg-primary-deep/70 backdrop-blur-sm transition-opacity duration-300 ease-out data-[closed]:opacity-0"
+          />
 
           <div className="fixed inset-0 flex">
-            <DialogPanel className="relative mr-16 flex w-full max-w-xs flex-1">
+            <DialogPanel
+              transition
+              className="relative mr-16 flex w-full max-w-xs flex-1 transition duration-300 ease-out data-[closed]:-translate-x-full"
+            >
               <TransitionChild>
-                <div className="absolute top-0 left-full flex w-16 justify-center pt-5">
+                <div className="absolute top-0 left-full flex w-16 justify-center pt-5 transition-opacity duration-300 ease-in data-[closed]:opacity-0">
                   <button onClick={() => setSidebarOpen(false)}>
                     <XMarkIcon className="size-6 text-white" />
                   </button>
                 </div>
               </TransitionChild>
 
-              <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4 dark:bg-gray-900">
+              <div className="glass-panel-dark flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 shadow-glass-lg">
                 <div className="flex h-16 items-center">
                   <Logo />
                 </div>
 
-                <nav className="flex flex-1 flex-col">
-                  <ul className="space-y-1">
-                    {navigation.map((item) => (
-                      <li key={item.name}>
-                        <Link to={item?.href} className="flex gap-x-3 p-2 text-sm font-semibold">
-                          <item.icon className="size-6" />
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
+                <SidebarNav navigation={navigation} collapsed={false} />
               </div>
             </DialogPanel>
           </div>
@@ -109,9 +105,9 @@ export default function SidebarLayout({ children }) {
         {/* DESKTOP SIDEBAR */}
         <div
           className={`hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex ${collapsed ? 'lg:w-20' : 'lg:w-72'
-            } lg:flex-col transition-all duration-300`}
+            } lg:flex-col transition-all duration-300 ease-in-out`}
         >
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-3 pb-4 dark:bg-gray-900">
+          <div className="glass-panel-dark flex grow flex-col gap-y-5 overflow-y-auto px-3 pb-4 shadow-glass-lg">
 
             {/* LOGO + TOGGLE */}
             <div className="flex h-16 items-center justify-between">
@@ -121,7 +117,7 @@ export default function SidebarLayout({ children }) {
 
               <button
                 onClick={() => setCollapsed(!collapsed)}
-                className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="rounded-md p-1 text-white/60 transition-colors duration-150 hover:bg-white/10 hover:text-white"
               >
                 {collapsed ? (
                   <ChevronRightIcon className="size-5" />
@@ -132,98 +128,37 @@ export default function SidebarLayout({ children }) {
             </div>
 
             {/* NAV */}
-            <nav className="flex flex-1 flex-col">
-              <ul className="flex flex-1 flex-col gap-y-4">
-                <li>
-                  <ul className="space-y-1">
-                    {navigation.map((item) => (
-                      <li key={item.name}>
-                        <Link to={item?.href}
-                          title={item.name}
-                          className={classNames(
-                            'group flex items-center rounded-md p-2 text-sm font-semibold',
-                            collapsed ? 'justify-center' : 'gap-x-3',
-                            item.current
-                              ? 'bg-gray-100 text-primary'
-                              : 'text-gray-700 hover:bg-gray-100'
-                          )}
-                        >
-                          <item.icon className="size-6 shrink-0" />
-                          {!collapsed && item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-
-                {/* TEAMS */}
-                <li>
-                  {/* {!collapsed && (
-                    <div className="text-xs font-semibold text-gray-400">Your teams</div>
-                  )} */}
-                  <ul className="mt-2 space-y-1">
-                    {teams.map((team) => (
-                      <li key={team.id}>
-                        <a
-                          title={team.name}
-                          className={classNames(
-                            'flex items-center rounded-md p-2 text-sm font-semibold',
-                            collapsed ? 'justify-center' : 'gap-x-3'
-                          )}
-                        >
-                          <span className="flex size-6 items-center justify-center rounded-lg border text-xs">
-                            {team.initial}
-                          </span>
-                          {!collapsed && team.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-
-                {/* SETTINGS */}
-                <li className="mt-auto">
-                  <a
-                    title="Settings"
-                    className={classNames(
-                      'flex items-center rounded-md p-2 text-sm font-semibold',
-                      collapsed ? 'justify-center' : 'gap-x-3'
-                    )}
-                  >
-                    <Cog6ToothIcon className="size-6" />
-                    {!collapsed && 'Settings'}
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <SidebarNav navigation={navigation} collapsed={collapsed} teams={teams} />
           </div>
         </div>
 
         {/* MAIN CONTENT */}
         <div className={collapsed ? 'lg:pl-20' : 'lg:pl-72'}>
-          <div className="sticky top-0 z-40 flex h-16 items-center border-b border-gray-200 bg-white px-4 ">
-            <button onClick={() => setSidebarOpen(true)} className="lg:hidden">
+          <div className="glass-panel sticky top-0 z-40 flex h-16 items-center rounded-none border-x-0 border-t-0 px-4">
+            <button onClick={() => setSidebarOpen(true)} className="text-gray-500 lg:hidden">
               <Bars3Icon className="size-6" />
             </button>
 
-            <div className="flex flex-1 justify-end items-center gap-x-4">
-              <BellIcon className="size-6" />
+            <div className="flex flex-1 items-center justify-end gap-x-4">
+              <button className="rounded-full p-1.5 text-gray-500 transition-colors duration-150 hover:bg-primary/5 hover:text-primary">
+                <BellIcon className="size-5" />
+              </button>
 
               <Menu as="div" className="relative">
-                <MenuButton>
+                <MenuButton className="block rounded-full outline-none transition-shadow duration-200 focus-visible:shadow-glow-sm">
                   <img
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
-                    className="size-8 rounded-full"
+                    className="size-8 rounded-full ring-2 ring-primary/10"
                   />
                 </MenuButton>
 
-                <MenuItems className="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-md">
+                <MenuItems
+                  transition
+                  className="glass-panel absolute right-0 mt-2 w-36 origin-top-right rounded-lg p-1 shadow-glass-md transition duration-150 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+                >
                   {userNavigation?.map((item) => (
-                    <MenuItem key={item?.name}  onClick={() => item?.onClick?.()}>
-                      <div
-                       
-                        className="block px-3 py-2 text-sm hover:bg-gray-100"
-                      >
+                    <MenuItem key={item?.name} onClick={() => item?.onClick?.()}>
+                      <div className="block rounded-md px-3 py-2 text-sm text-gray-700 transition-colors duration-150 data-[focus]:bg-primary/5 data-[focus]:text-primary">
                         {item.name}
                       </div>
                     </MenuItem>
@@ -233,9 +168,90 @@ export default function SidebarLayout({ children }) {
             </div>
           </div>
 
-          <main className="py-10 px-6">{children}</main>
+          <main className="px-6 py-10">{children}</main>
         </div>
       </div>
     </>
+  )
+}
+
+function SidebarNav({ navigation, collapsed, teams = [] }) {
+  return (
+    <nav className="flex flex-1 flex-col">
+      <ul className="flex flex-1 flex-col gap-y-4">
+        <li>
+          <ul className="space-y-1">
+            {navigation.map((item) => (
+              <li key={item.name} className="relative">
+                {item.current && (
+                  <motion.span
+                    layoutId="sidebar-active-indicator"
+                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                    className="absolute inset-0 rounded-md bg-white/10 shadow-glow-sm"
+                  />
+                )}
+                <Link
+                  to={item?.href}
+                  title={item.name}
+                  className={classNames(
+                    'group relative z-10 flex items-center rounded-md p-2 text-sm font-semibold transition-colors duration-150',
+                    collapsed ? 'justify-center' : 'gap-x-3',
+                    item.current
+                      ? 'text-white'
+                      : 'text-white/60 hover:bg-white/5 hover:text-white/90'
+                  )}
+                >
+                  <item.icon
+                    className={classNames(
+                      'size-6 shrink-0 transition-colors duration-150',
+                      item.current && 'text-glow drop-shadow-[0_0_6px_rgba(79,209,255,0.6)]'
+                    )}
+                  />
+                  {!collapsed && item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </li>
+
+        {/* TEAMS */}
+        {teams.length > 0 && (
+          <li>
+            <ul className="mt-2 space-y-1">
+              {teams.map((team) => (
+                <li key={team.id}>
+                  <a
+                    title={team.name}
+                    className={classNames(
+                      'flex items-center rounded-md p-2 text-sm font-semibold text-white/60 hover:bg-white/5 hover:text-white/90',
+                      collapsed ? 'justify-center' : 'gap-x-3'
+                    )}
+                  >
+                    <span className="flex size-6 items-center justify-center rounded-lg border border-white/15 text-xs">
+                      {team.initial}
+                    </span>
+                    {!collapsed && team.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        )}
+
+        {/* SETTINGS */}
+        <li className="mt-auto">
+          <a
+            title="Settings"
+            className={classNames(
+              'flex items-center rounded-md p-2 text-sm font-semibold text-white/60 transition-colors duration-150 hover:bg-white/5 hover:text-white/90',
+              collapsed ? 'justify-center' : 'gap-x-3'
+            )}
+          >
+            <Cog6ToothIcon className="size-6" />
+            {!collapsed && 'Settings'}
+          </a>
+        </li>
+      </ul>
+    </nav>
   )
 }

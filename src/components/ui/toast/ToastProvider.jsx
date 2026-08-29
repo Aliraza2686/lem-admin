@@ -17,6 +17,12 @@ const ACCENTS = {
   info: "text-primary bg-primary/5 border-primary/20",
 };
 
+const RING_ACCENTS = {
+  success: "shadow-[0_0_0_1px_rgba(5,150,105,0.15),0_8px_24px_-8px_rgba(5,150,105,0.25)]",
+  error: "shadow-[0_0_0_1px_rgba(220,38,38,0.15),0_8px_24px_-8px_rgba(220,38,38,0.25)]",
+  info: "shadow-glow-sm",
+};
+
 let idCounter = 0;
 
 function ToastItem({ toast, onDismiss }) {
@@ -40,7 +46,8 @@ function ToastItem({ toast, onDismiss }) {
       onMouseLeave={startTimer}
       onAnimationComplete={() => startTimer()}
       className={cn(
-        "pointer-events-auto relative w-80 overflow-hidden rounded-xl border bg-white shadow-lg",
+        "glass-panel pointer-events-auto relative w-80 overflow-hidden rounded-xl",
+        RING_ACCENTS[type] || RING_ACCENTS.info,
         "flex items-start gap-3 p-4"
       )}
       role="status"

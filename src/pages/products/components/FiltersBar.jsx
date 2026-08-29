@@ -35,14 +35,14 @@ export default function FiltersBar({
             value={search}
             onChange={(e) => onSearch(e.target.value)}
             placeholder="Search by name, id, origin, description..."
-            className="w-full rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/10"
+            className="transition-glow w-full rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm outline-none focus:border-glow focus:shadow-glow-sm"
           />
         </div>
 
         <select
           value={category}
           onChange={(e) => onCategory(e.target.value)}
-          className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10"
+          className="transition-glow rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-glow focus:shadow-glow-sm"
         >
           <option value="">All categories</option>
           {categories.map((c) => (
@@ -55,7 +55,7 @@ export default function FiltersBar({
         <select
           value={origin}
           onChange={(e) => onOrigin(e.target.value)}
-          className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10"
+          className="transition-glow rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-glow focus:shadow-glow-sm"
         >
           <option value="">All origins</option>
           {origins.map((o) => (
@@ -70,7 +70,7 @@ export default function FiltersBar({
           <select
             value={sort}
             onChange={(e) => onSort(e.target.value)}
-            className="rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm text-gray-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10"
+            className="transition-glow rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm text-gray-700 outline-none focus:border-glow focus:shadow-glow-sm"
           >
             {SORT_OPTIONS.map((s) => (
               <option key={s.value} value={s.value}>

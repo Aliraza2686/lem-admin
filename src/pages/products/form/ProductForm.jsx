@@ -12,6 +12,7 @@ import { createProduct, updateProduct, uploadVariantImages } from "../../../api/
 import { useToast } from "../../../components/ui/toast/ToastProvider";
 import { slugify, slugifyLive } from "../productUtils";
 import { cn } from "../../../utillls/common";
+import { useGlowPulse } from "../../../hooks/useGlowPulse";
 
 const EMPTY = {
   id: "",
@@ -64,6 +65,8 @@ export default function ProductForm({ mode, initialProduct }) {
   const valid = isValid(errors);
 
   const anyUploading = values.variants.some((v) => (v.images || []).some((img) => img._uploading));
+  const readyToSave = valid && touched && !submitting && !anyUploading;
+  const glowRef = useGlowPulse(readyToSave);
 
   const set = (patch) => {
     setTouched(true);
@@ -293,7 +296,7 @@ export default function ProductForm({ mode, initialProduct }) {
         <LabReportsFieldGroup reports={values.labReports} onChange={(v) => set({ labReports: v })} />
       </Section>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-gray-200 bg-white/95 backdrop-blur lg:pl-72">
+      <div className="glass-panel fixed inset-x-0 bottom-0 z-30 rounded-none border-x-0 border-b-0 lg:pl-72">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-6 py-3">
           <span className="text-xs text-gray-400">
             {anyUploading ? "Waiting for image uploads to finish..." : touched ? "Draft autosaved locally" : "No changes yet"}
@@ -302,15 +305,17 @@ export default function ProductForm({ mode, initialProduct }) {
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-50"
+              className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition duration-150 hover:bg-gray-50"
             >
               <RotateCcw className="size-4" />
               Cancel
             </button>
             <button
+              ref={glowRef}
               type="submit"
               disabled={submitting || anyUploading || !valid}
-              className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-40"
+              style={readyToSave ? { boxShadow: "0 0 0 1px rgba(79,209,255,0.3), 0 0 calc(4px + 14px * var(--glow-opacity, 0)) 0 rgba(79,209,255,0.35)" } : undefined}
+              className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white transition duration-150 hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-40"
             >
               {submitting ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
               {submitting ? "Saving..." : isEdit ? "Save changes" : "Create product"}
@@ -329,7 +334,7 @@ function stripVariantMeta(v) {
 
 function Section({ title, subtitle, children }) {
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5">
+    <div className="glass-panel rounded-2xl p-5">
       <div className="mb-4">
         <h2 className="text-sm font-semibold text-gray-900">{title}</h2>
         {subtitle && <p className="mt-0.5 text-xs text-gray-400">{subtitle}</p>}

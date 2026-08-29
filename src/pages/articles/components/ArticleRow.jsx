@@ -13,9 +13,9 @@ export default function ArticleRow({ article, onDelete, selected, onToggleSelect
       initial={{ opacity: 0, x: -12 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, height: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0, transition: { duration: 0.25 } }}
-      whileHover={{ backgroundColor: "rgba(99,102,241,0.03)" }}
+      whileHover={{ backgroundColor: "rgba(13,31,53,0.03)" }}
       transition={{ type: "spring", stiffness: 320, damping: 30 }}
-      className="group flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-3 shadow-sm transition-shadow hover:shadow-md"
+      className="glass-panel group flex items-center gap-4 rounded-xl p-3 hover:border-glow/25 hover:shadow-glass-md"
     >
       {selectMode && (
         <input type="checkbox" checked={selected} onChange={() => onToggleSelect(article._id)} className="size-4.5 shrink-0 accent-primary" />

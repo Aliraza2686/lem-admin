@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { cn } from "../../../utillls/common";
+
 export default function Pagination({
   currentPage,
   totalPages,
@@ -38,55 +41,45 @@ export default function Pagination({
   const pages = getPages()
 
   return (
-    <div className="flex items-center justify-center gap-2 mt-6">
-      {/* Prev */}
+    <div className="mt-6 flex items-center justify-center gap-2">
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-3 py-1 rounded-md text-sm border transition"
-        style={{
-          borderColor: '#57534e',
-          color: currentPage === 1 ? '#57534e' : '#0d1f35',
-          background: '#fff',
-          opacity: currentPage === 1 ? 0.5 : 1,
-        }}
+        className="rounded-md border border-gray-300 px-3 py-1 text-sm text-primary transition duration-150 hover:border-glow/40 hover:text-glow disabled:cursor-not-allowed disabled:text-gray-300 disabled:hover:border-gray-300 disabled:hover:text-gray-300"
       >
         Prev
       </button>
 
-      {/* Pages */}
       {pages.map((p, i) =>
         p === '...' ? (
-          <span key={i} className="px-2 text-[#57534e]">
+          <span key={i} className="px-2 text-gray-400">
             ...
           </span>
         ) : (
           <button
             key={i}
             onClick={() => onPageChange(p)}
-            className="px-3 py-1 rounded-md text-sm border transition"
-            style={{
-              borderColor: p === currentPage ? '#0d1f35' : '#57534e',
-              background: p === currentPage ? '#0d1f35' : '#fff',
-              color: p === currentPage ? '#fff' : '#57534e',
-            }}
+            className={cn(
+              "relative rounded-md border px-3 py-1 text-sm transition-colors duration-150",
+              p === currentPage ? "border-primary text-white" : "border-gray-300 text-gray-500 hover:border-glow/40 hover:text-glow"
+            )}
           >
+            {p === currentPage && (
+              <motion.span
+                layoutId="pagination-active-pill"
+                transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                className="absolute inset-0 -z-10 rounded-md bg-primary shadow-glow-sm"
+              />
+            )}
             {p}
           </button>
         )
       )}
 
-      {/* Next */}
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-3 py-1 rounded-md text-sm border transition"
-        style={{
-          borderColor: '#57534e',
-          color: currentPage === totalPages ? '#57534e' : '#0d1f35',
-          background: '#fff',
-          opacity: currentPage === totalPages ? 0.5 : 1,
-        }}
+        className="rounded-md border border-gray-300 px-3 py-1 text-sm text-primary transition duration-150 hover:border-glow/40 hover:text-glow disabled:cursor-not-allowed disabled:text-gray-300 disabled:hover:border-gray-300 disabled:hover:text-gray-300"
       >
         Next
       </button>

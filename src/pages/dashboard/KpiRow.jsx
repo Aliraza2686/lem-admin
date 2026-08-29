@@ -18,18 +18,18 @@ function KpiCard({ icon: Icon, label, value, delta, loading, index }) {
       variants={cardVariants}
       whileHover={{ y: -3 }}
       transition={{ type: "spring", stiffness: 300, damping: 28 }}
-      className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white/80 p-5 shadow-sm backdrop-blur transition-shadow hover:shadow-lg dark:border-gray-800 dark:bg-gray-900/80"
+      className="dash-panel dash-panel-hover relative overflow-hidden rounded-2xl p-5"
     >
       <div className="flex items-center justify-between">
-        <span className="flex size-10 items-center justify-center rounded-xl bg-primary/5 text-primary dark:bg-primary/10 dark:text-primary">
+        <span className="flex size-10 items-center justify-center rounded-xl bg-glow/12 text-glow">
           <Icon className="size-5" />
         </span>
         {hasDelta && (
           <span
             className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
               positive
-                ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400"
-                : "bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400"
+                ? "bg-emerald-500/10 text-emerald-400"
+                : "bg-rose-500/10 text-rose-400"
             }`}
           >
             {formatPercent(delta)}
@@ -37,14 +37,14 @@ function KpiCard({ icon: Icon, label, value, delta, loading, index }) {
         )}
       </div>
 
-      <p className="mt-4 text-2xl font-semibold text-gray-900 tabular-nums dark:text-white">
+      <p className="mt-4 text-2xl font-semibold tabular-nums text-white">
         {loading ? (
-          <span className="inline-block h-7 w-16 animate-pulse rounded bg-gray-100 dark:bg-gray-800" />
+          <span className="inline-block h-7 w-16 animate-pulse rounded bg-white/10" />
         ) : (
           formatCompactNumber(animatedValue)
         )}
       </p>
-      <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{label}</p>
+      <p className="mt-1 text-sm text-white/50">{label}</p>
     </motion.div>
   );
 }

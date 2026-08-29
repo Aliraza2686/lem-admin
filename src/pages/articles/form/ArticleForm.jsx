@@ -17,6 +17,7 @@ import ArticlePreview from "./ArticlePreview";
 import PublishActions from "../components/PublishActions";
 import { STATUS_META } from "../articleUtils";
 import { cn } from "../../../utillls/common";
+import { useGlowPulse } from "../../../hooks/useGlowPulse";
 
 const EMPTY = {
   title: "",
@@ -92,6 +93,8 @@ export default function ArticleForm({ mode, initialArticle }) {
   const wordCount = estimateWordCount(values.content);
   const readTime = estimateReadTime(values.content);
   const slugPreview = isEdit ? article?.slug : slugifyPreview(values.title);
+  const readyToSave = valid && touched && !submitting;
+  const glowRef = useGlowPulse(readyToSave);
 
   const set = (patch) => {
     setTouched(true);
@@ -162,7 +165,7 @@ export default function ArticleForm({ mode, initialArticle }) {
       )}
 
       {/* Top bar: status + publish workflow + edit/preview toggle */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-white p-4">
+      <div className="glass-panel flex flex-wrap items-center justify-between gap-3 rounded-2xl p-4">
         <div className="flex items-center gap-2">
           <span className={cn("rounded-full px-2.5 py-1 text-xs font-semibold", STATUS_META[values.status].badge)}>
             {STATUS_META[values.status].label}
@@ -303,22 +306,24 @@ export default function ArticleForm({ mode, initialArticle }) {
         </>
       )}
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-gray-200 bg-white/95 backdrop-blur lg:pl-72">
+      <div className="glass-panel fixed inset-x-0 bottom-0 z-30 rounded-none border-x-0 border-b-0 lg:pl-72">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-6 py-3">
           <span className="text-xs text-gray-400">{touched ? "Draft autosaved locally" : "No changes yet"}</span>
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-50"
+              className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition duration-150 hover:bg-gray-50"
             >
               <RotateCcw className="size-4" />
               Cancel
             </button>
             <button
+              ref={glowRef}
               type="submit"
               disabled={submitting || !valid}
-              className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-40"
+              style={readyToSave ? { boxShadow: "0 0 0 1px rgba(79,209,255,0.3), 0 0 calc(4px + 14px * var(--glow-opacity, 0)) 0 rgba(79,209,255,0.35)" } : undefined}
+              className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white transition duration-150 hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-40"
             >
               {submitting ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
               {submitting ? "Saving..." : isEdit ? "Save changes" : "Create article"}
@@ -332,7 +337,7 @@ export default function ArticleForm({ mode, initialArticle }) {
 
 function Section({ title, subtitle, children }) {
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5">
+    <div className="glass-panel rounded-2xl p-5">
       <div className="mb-4">
         <h2 className="text-sm font-semibold text-gray-900">{title}</h2>
         {subtitle && <p className="mt-0.5 text-xs text-gray-400">{subtitle}</p>}

@@ -18,7 +18,7 @@ export default function Modal({ open, onClose, title, children, size = "md", foo
       {open && (
         <div className="fixed inset-0 z-[90] flex items-center justify-center p-4">
           <motion.div
-            className="absolute inset-0 bg-gray-900/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-primary-deep/60 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -29,7 +29,7 @@ export default function Modal({ open, onClose, title, children, size = "md", foo
             role="dialog"
             aria-modal="true"
             className={cn(
-              "relative w-full overflow-hidden rounded-2xl bg-white shadow-2xl",
+              "glass-panel relative w-full overflow-hidden rounded-2xl shadow-glass-lg",
               SIZES[size]
             )}
             initial={{ opacity: 0, scale: 0.94, y: 12 }}

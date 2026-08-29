@@ -12,6 +12,12 @@ import VisitorsChart from "./dashboard/VisitorsChart";
 import TopArticles from "./dashboard/TopArticles";
 import ProductStats from "./dashboard/ProductStats";
 import ActivityFeed from "./dashboard/ActivityFeed";
+import DashboardHeader from "./dashboard/DashboardHeader";
+import SpotlightArticle from "./dashboard/SpotlightArticle";
+import VisitorsGauge from "./dashboard/VisitorsGauge";
+import QuickActionsPanel from "./dashboard/QuickActionsPanel";
+import QuickNavTiles from "./dashboard/QuickNavTiles";
+import RecentItemsRow from "./dashboard/RecentItemsRow";
 import { bucketVisitors, computePeriodChange, detectSpikes, recentlyUpdated } from "./dashboard/dashboardUtils";
 
 const VISITOR_SAMPLE_LIMIT = 1000;
@@ -107,7 +113,9 @@ const Dashboard = () => {
     () => recentlyUpdated(articles.filter((a) => a.status === "published"), "createdAt", 5),
     [articles]
   );
+  const recentAnyArticles = useMemo(() => recentlyUpdated(articles, "createdAt", 5), [articles]);
   const recentProducts = useMemo(() => recentlyUpdated(products, "updatedAt", 5), [products]);
+  const spotlightArticle = recentPublishedArticles[0] || articles[0] || null;
 
   return (
     <SidebarLayout>
@@ -118,18 +126,53 @@ const Dashboard = () => {
           variants={containerVariants}
           initial={reduced ? false : "hidden"}
           animate="visible"
-          className="space-y-6"
+          className="dash-shell space-y-6 p-5 sm:p-7"
         >
-          <KpiRow
-            visitorsCount={periodChange.current}
-            visitorsDelta={visitorsTotal > 0 ? periodChange.percentChange : undefined}
-            productsCount={productsTotal}
-            articlesCount={articlesTotal}
-            avgViews={avgViews}
-            loading={loading}
-          />
+          <motion.div variants={containerVariants}>
+            <DashboardHeader />
+          </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <motion.div variants={containerVariants}>
+            <KpiRow
+              visitorsCount={periodChange.current}
+              visitorsDelta={visitorsTotal > 0 ? periodChange.percentChange : undefined}
+              productsCount={productsTotal}
+              articlesCount={articlesTotal}
+              avgViews={avgViews}
+              loading={loading}
+            />
+          </motion.div>
+
+          <motion.div variants={containerVariants} className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+            <div className="lg:col-span-2">
+              <SpotlightArticle article={spotlightArticle} loading={loading} />
+            </div>
+            <VisitorsGauge
+              current={periodChange.current}
+              percentChange={visitorsTotal > 0 ? periodChange.percentChange : undefined}
+              range={range}
+              onRangeChange={setRange}
+              loading={loading}
+              reduced={reduced}
+            />
+            <QuickActionsPanel />
+          </motion.div>
+
+          <motion.div variants={containerVariants}>
+            <QuickNavTiles
+              productsCount={productsTotal}
+              articlesCount={articlesTotal}
+              visitorsCount={periodChange.current}
+              loading={loading}
+            />
+          </motion.div>
+
+          <motion.div variants={containerVariants}>
+            <h2 className="mb-3 px-1 text-sm font-semibold text-white">Recently added</h2>
+            <RecentItemsRow products={recentProducts} articles={recentAnyArticles} loading={loading} />
+          </motion.div>
+
+          <motion.div variants={containerVariants} className="grid grid-cols-1 gap-4 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <VisitorsChart buckets={buckets} range={range} onRangeChange={setRange} loading={loading} reduced={reduced} />
             </div>
@@ -139,12 +182,12 @@ const Dashboard = () => {
               spikeBuckets={spikeBuckets}
               loading={loading}
             />
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <motion.div variants={containerVariants} className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <TopArticles articles={topArticles} loading={loading} reduced={reduced} />
             <ProductStats products={products} total={productsTotal} loading={loading} />
-          </div>
+          </motion.div>
         </motion.div>
       </MotionConfig>
     </SidebarLayout>

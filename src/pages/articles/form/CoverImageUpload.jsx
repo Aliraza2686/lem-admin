@@ -31,11 +31,11 @@ export default function CoverImageUpload({ existingUrl, file, onFileChange }) {
           pick(e.dataTransfer.files);
         }}
         onClick={() => inputRef.current?.click()}
-        animate={dragOver ? { scale: 1.01, borderColor: "#a88940" } : { scale: 1, borderColor: "#d1d5db" }}
+        animate={dragOver ? { scale: 1.01, borderColor: "#4fd1ff" } : { scale: 1, borderColor: "#d1d5db" }}
         transition={{ duration: 0.15 }}
         className={cn(
           "relative flex h-48 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-dashed bg-gray-50/50",
-          dragOver && "bg-primary/5/60"
+          dragOver && "bg-primary/5 shadow-glow-sm"
         )}
       >
         {previewUrl ? (
@@ -54,7 +54,7 @@ export default function CoverImageUpload({ existingUrl, file, onFileChange }) {
           </>
         ) : (
           <>
-            <UploadCloud className={cn("size-8", dragOver ? "text-primary" : "text-gray-400")} />
+            <UploadCloud className={cn("size-8", dragOver ? "text-glow" : "text-gray-400")} />
             <p className="mt-2 text-sm text-gray-500">
               <span className="font-medium text-primary">Click to upload</span> or drag and drop
             </p>

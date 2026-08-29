@@ -18,10 +18,10 @@ export default function ArticleTable({ articles, onDelete, onDuplicate, selected
   const allSelected = articles.length > 0 && articles.every((a) => selected.has(a._id));
 
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+    <div className="glass-panel overflow-hidden rounded-xl">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[900px] text-sm">
-          <thead className="sticky top-0 z-10 bg-gray-50">
+          <thead className="sticky top-0 z-10 bg-gray-50/90 backdrop-blur">
             <tr className="border-b border-gray-200 text-left text-xs font-semibold text-gray-500">
               <th className="w-10 px-4 py-3">
                 <input type="checkbox" checked={allSelected} onChange={() => onToggleSelectAll(articles.map((a) => a._id))} className="size-4 accent-primary" />
@@ -53,7 +53,10 @@ export default function ArticleTable({ articles, onDelete, onDuplicate, selected
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0, transition: { delay: Math.min(i, 12) * 0.02 } }}
                     exit={{ opacity: 0, height: 0, transition: { duration: 0.22 } }}
-                    className={cn("border-b border-gray-100 last:border-0 hover:bg-primary/5/30", selected.has(article._id) && "bg-primary/5/50")}
+                    className={cn(
+                      "border-b border-gray-100 transition-colors duration-150 last:border-0 hover:bg-primary/5",
+                      selected.has(article._id) && "bg-primary/10"
+                    )}
                   >
                     <td className="px-4 py-2.5">
                       <input type="checkbox" checked={selected.has(article._id)} onChange={() => onToggleSelect(article._id)} className="size-4 accent-primary" />

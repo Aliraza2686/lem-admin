@@ -16,7 +16,7 @@ export default function ArticleCard({ article, onDelete, selected, onToggleSelec
       exit={{ opacity: 0, scale: 0.92, height: 0, marginBottom: 0, transition: { duration: 0.25 } }}
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 28 }}
-      className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
+      className="glass-panel group relative overflow-hidden rounded-2xl hover:border-glow/25 hover:shadow-glass-md"
     >
       {selectMode && (
         <label className="absolute top-3 left-3 z-10">
@@ -96,8 +96,8 @@ export default function ArticleCard({ article, onDelete, selected, onToggleSelec
 }
 
 function ActionButton({ to, onClick, icon: Icon, label, danger }) {
-  const classes = `flex size-8 items-center justify-center rounded-lg bg-white/95 shadow-sm ring-1 ring-gray-200 backdrop-blur transition hover:scale-110 ${
-    danger ? "text-red-500 hover:bg-red-50" : "text-gray-600 hover:bg-primary/5 hover:text-primary"
+  const classes = `flex size-8 items-center justify-center rounded-lg bg-white/95 shadow-sm ring-1 ring-gray-200 backdrop-blur transition duration-150 hover:scale-110 ${
+    danger ? "text-red-500 hover:bg-red-50" : "text-gray-600 hover:bg-primary/5 hover:text-primary hover:shadow-glow-sm"
   }`;
   if (to) {
     return (

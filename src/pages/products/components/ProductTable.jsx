@@ -27,10 +27,10 @@ export default function ProductTable({
   const allSelected = products.length > 0 && products.every((p) => selected.has(p.id));
 
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+    <div className="glass-panel overflow-hidden rounded-xl">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[820px] text-sm">
-          <thead className="sticky top-0 z-10 bg-gray-50">
+          <thead className="sticky top-0 z-10 bg-gray-50/90 backdrop-blur">
             <tr className="border-b border-gray-200 text-left text-xs font-semibold text-gray-500">
               <th className="w-10 px-4 py-3">
                 <input
@@ -72,8 +72,8 @@ export default function ProductTable({
                     animate={{ opacity: 1, y: 0, transition: { delay: Math.min(i, 12) * 0.02 } }}
                     exit={{ opacity: 0, height: 0, transition: { duration: 0.22 } }}
                     className={cn(
-                      "border-b border-gray-100 last:border-0 hover:bg-primary/5/30",
-                      selected.has(product.id) && "bg-primary/5/50"
+                      "border-b border-gray-100 transition-colors duration-150 last:border-0 hover:bg-primary/5",
+                      selected.has(product.id) && "bg-primary/10"
                     )}
                   >
                     <td className="px-4 py-2.5">

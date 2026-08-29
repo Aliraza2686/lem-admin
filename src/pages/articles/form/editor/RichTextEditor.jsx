@@ -153,7 +153,7 @@ const editorConfig = {
 export default function RichTextEditor({ articleKey, initialHtml, onChangeHtml, galleryOptions }) {
   return (
     <LexicalComposer key={articleKey} initialConfig={editorConfig}>
-      <div className="overflow-hidden rounded-xl border border-gray-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10">
+      <div className="transition-glow overflow-hidden rounded-xl border border-gray-300 focus-within:border-glow focus-within:shadow-glow-sm">
         <ImageInsertTrigger galleryOptions={galleryOptions} />
         <div className="relative">
           <RichTextPlugin

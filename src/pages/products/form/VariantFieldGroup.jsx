@@ -42,7 +42,7 @@ export default function VariantFieldGroup({ productId, variants, onChange, onUpd
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0, transition: { duration: 0.2 } }}
               transition={{ duration: 0.25 }}
-              className="overflow-hidden rounded-xl border border-gray-200 bg-white"
+              className="glass-panel overflow-hidden rounded-xl"
             >
               <button
                 type="button"

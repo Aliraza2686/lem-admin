@@ -8,9 +8,9 @@ export default function EmptyState({ filtered }) {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 bg-white/60 px-6 py-20 text-center"
+      className="glass-panel flex flex-col items-center justify-center rounded-2xl border-dashed px-6 py-20 text-center"
     >
-      <div className="flex size-16 items-center justify-center rounded-full bg-primary/5 text-primary">
+      <div className="flex size-16 items-center justify-center rounded-full bg-primary/5 text-primary shadow-glow-sm">
         {filtered ? <SearchX className="size-8" /> : <PackagePlus className="size-8" />}
       </div>
       <h3 className="mt-4 text-base font-semibold text-gray-900">

@@ -8,7 +8,10 @@ const cardVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-const BAR_COLORS = ["#4f46e5", "#6366f1", "#818cf8", "#a5b4fc", "#c7d2fe"];
+// Light-blue-to-glow ramp derived from brand tokens — bars sit on a dark
+// dash-panel card here, so a navy-heavy ramp would nearly disappear; this
+// stays bright throughout instead of fading to dark like the light-mode ramp.
+const BAR_COLORS = ["#2f93c9", "#4fd1ff", "#6fdaff", "#8fe3ff", "#b8edff"];
 
 const truncate = (str, max = 18) => (str && str.length > max ? `${str.slice(0, max)}…` : str || "");
 
@@ -16,9 +19,9 @@ function ChartTooltip({ active, payload }) {
   if (!active || !payload?.length) return null;
   const item = payload[0].payload;
   return (
-    <div className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs shadow-lg dark:border-gray-700 dark:bg-gray-900">
-      <p className="max-w-48 truncate font-medium text-gray-900 dark:text-white">{item.title}</p>
-      <p className="text-gray-500 dark:text-gray-400">{item.views} views</p>
+    <div className="dash-panel rounded-lg px-3 py-2 text-xs">
+      <p className="max-w-48 truncate font-medium text-white">{item.title}</p>
+      <p className="text-white/50">{item.views} views</p>
     </div>
   );
 }
@@ -29,19 +32,19 @@ export default function TopArticles({ articles, loading, reduced }) {
   return (
     <motion.div
       variants={cardVariants}
-      className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900"
+      className="dash-panel rounded-2xl p-5"
     >
-      <h2 className="text-sm font-semibold text-gray-900 dark:text-white">Top articles by views</h2>
-      <p className="text-xs text-gray-500 dark:text-gray-400">Highest-viewed published content</p>
+      <h2 className="text-sm font-semibold text-white">Top articles by views</h2>
+      <p className="text-xs text-white/40">Highest-viewed published content</p>
 
       {loading ? (
         <div className="mt-4 space-y-2">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-8 w-full animate-pulse rounded bg-gray-100 dark:bg-gray-800" />
+            <div key={i} className="h-8 w-full animate-pulse rounded bg-white/5" />
           ))}
         </div>
       ) : data.length === 0 ? (
-        <p className="mt-6 text-center text-sm text-gray-400">No articles yet</p>
+        <p className="mt-6 text-center text-sm text-white/30">No articles yet</p>
       ) : (
         <>
           <div className="mt-4 h-48">
@@ -54,11 +57,11 @@ export default function TopArticles({ articles, loading, reduced }) {
                   width={110}
                   tickFormatter={(v) => truncate(v)}
                   tick={{ fontSize: 11, fill: "currentColor" }}
-                  className="text-gray-500"
+                  className="text-white/40"
                   tickLine={false}
                   axisLine={false}
                 />
-                <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(79, 70, 229, 0.06)" }} />
+                <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(79, 209, 255, 0.06)" }} />
                 <Bar dataKey="views" radius={[0, 6, 6, 0]} isAnimationActive={!reduced} animationDuration={800}>
                   {data.map((entry, i) => (
                     <Cell key={entry.id} fill={BAR_COLORS[i % BAR_COLORS.length]} />
@@ -68,22 +71,22 @@ export default function TopArticles({ articles, loading, reduced }) {
             </ResponsiveContainer>
           </div>
 
-          <ul className="mt-3 divide-y divide-gray-100 dark:divide-gray-800">
+          <ul className="mt-3 divide-y divide-white/5">
             {data.map((a, i) => (
               <li key={a.id}>
                 <Link
                   to={`/articles/${a.slug}`}
-                  className="flex items-center gap-3 py-2 text-sm transition-colors hover:text-primary"
+                  className="flex items-center gap-3 py-2 text-sm text-white/70 transition-colors duration-150 hover:text-glow"
                 >
-                  <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-gray-100 text-[11px] font-semibold text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+                  <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-white/10 text-[11px] font-semibold text-white/50">
                     {i + 1}
                   </span>
-                  <span className="min-w-0 flex-1 truncate text-gray-700 dark:text-gray-300">{a.title}</span>
-                  <span className="flex shrink-0 items-center gap-1 text-xs text-gray-400">
+                  <span className="min-w-0 flex-1 truncate">{a.title}</span>
+                  <span className="flex shrink-0 items-center gap-1 text-xs text-white/35">
                     <Eye className="size-3.5" />
                     {a.views}
                   </span>
-                  <span className="flex shrink-0 items-center gap-1 text-xs text-gray-400">
+                  <span className="flex shrink-0 items-center gap-1 text-xs text-white/35">
                     <Heart className="size-3.5" />
                     {a.likes}
                   </span>

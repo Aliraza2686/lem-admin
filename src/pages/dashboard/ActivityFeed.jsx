@@ -9,9 +9,9 @@ const cardVariants = {
 };
 
 const ICONS = {
-  article: { icon: Newspaper, className: "bg-primary/5 text-primary dark:bg-primary/10 dark:text-primary" },
-  product: { icon: Package, className: "bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400" },
-  spike: { icon: Zap, className: "bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400" },
+  article: { icon: Newspaper, className: "bg-glow/12 text-glow" },
+  product: { icon: Package, className: "bg-accent/15 text-accent-light" },
+  spike: { icon: Zap, className: "bg-rose-500/10 text-rose-400" },
 };
 
 const timeAgo = (iso) => {
@@ -70,19 +70,19 @@ export default function ActivityFeed({ articles, products, spikeBuckets, loading
   return (
     <motion.div
       variants={cardVariants}
-      className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900"
+      className="dash-panel rounded-2xl p-5"
     >
-      <h2 className="text-sm font-semibold text-gray-900 dark:text-white">Recent activity</h2>
-      <p className="text-xs text-gray-500 dark:text-gray-400">Articles, products, and traffic spikes</p>
+      <h2 className="text-sm font-semibold text-white">Recent activity</h2>
+      <p className="text-xs text-white/40">Articles, products, and traffic spikes</p>
 
       {loading ? (
         <div className="mt-4 space-y-3">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-10 w-full animate-pulse rounded bg-gray-100 dark:bg-gray-800" />
+            <div key={i} className="h-10 w-full animate-pulse rounded bg-white/5" />
           ))}
         </div>
       ) : items.length === 0 ? (
-        <p className="mt-6 text-center text-sm text-gray-400">Nothing to show yet</p>
+        <p className="mt-6 text-center text-sm text-white/30">Nothing to show yet</p>
       ) : (
         <motion.ul variants={listVariants} initial="hidden" animate="visible" className="mt-4 space-y-1">
           {items.map((item) => {
@@ -91,14 +91,14 @@ export default function ActivityFeed({ articles, products, spikeBuckets, loading
               <motion.li key={item.id} variants={itemVariants}>
                 <Link
                   to={item.href}
-                  className="flex items-start gap-3 rounded-lg p-2 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/60"
+                  className="flex items-start gap-3 rounded-lg p-2 transition-colors duration-150 hover:bg-white/5"
                 >
                   <span className={`flex size-8 shrink-0 items-center justify-center rounded-full ${className}`}>
                     <Icon className="size-4" />
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate text-sm text-gray-700 dark:text-gray-300">{item.title}</span>
-                    <span className="block text-xs text-gray-400">
+                    <span className="block truncate text-sm text-white/80">{item.title}</span>
+                    <span className="block text-xs text-white/35">
                       {item.subtitle} · {timeAgo(item.timestamp)}
                     </span>
                   </span>

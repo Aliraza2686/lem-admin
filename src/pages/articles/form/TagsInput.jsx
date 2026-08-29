@@ -24,7 +24,7 @@ export default function TagsInput({ values = [], onChange, placeholder = "Add a 
   const remove = (tag) => onChange(values.filter((t) => t !== tag));
 
   return (
-    <div className="flex flex-wrap items-center gap-1.5 rounded-lg border border-gray-300 px-2 py-1.5 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10">
+    <div className="transition-glow flex flex-wrap items-center gap-1.5 rounded-lg border border-gray-300 px-2 py-1.5 focus-within:border-glow focus-within:shadow-glow-sm">
       <AnimatePresence initial={false}>
         {values.map((tag) => (
           <motion.span

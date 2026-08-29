@@ -12,7 +12,7 @@ export default function BulkActionsBar({ count, onClear, onDeleteSelected }) {
           transition={{ type: "spring", stiffness: 400, damping: 32 }}
           className="overflow-hidden"
         >
-          <div className="flex items-center justify-between rounded-xl border border-primary/20 bg-primary/5 px-4 py-2.5">
+          <div className="flex items-center justify-between rounded-xl border border-primary/20 bg-primary/5 px-4 py-2.5 shadow-glow-sm">
             <div className="flex items-center gap-2 text-sm font-medium text-primary-hover">
               <span className="flex size-5 items-center justify-center rounded-full bg-primary text-xs text-white">
                 {count}

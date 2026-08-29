@@ -51,11 +51,11 @@ export default function PublishActions({ articleId, status, title, compact, onCh
                 setPending(t);
               }}
               className={cn(
-                "flex items-center gap-1.5 rounded-lg font-medium transition",
+                "flex items-center gap-1.5 rounded-lg font-medium transition duration-150",
                 compact
                   ? "size-8 justify-center text-gray-500 hover:bg-gray-100"
                   : "px-3 py-2 text-sm",
-                !compact && t.tone === "primary" && "bg-primary text-white hover:bg-primary-hover",
+                !compact && t.tone === "primary" && "bg-primary text-white hover:bg-primary-hover hover:shadow-glow-sm",
                 !compact && t.tone === "muted" && "border border-gray-200 text-gray-600 hover:bg-gray-50"
               )}
             >

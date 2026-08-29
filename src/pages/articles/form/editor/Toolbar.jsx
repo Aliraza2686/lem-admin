@@ -42,8 +42,8 @@ function ToolbarButton({ active, onClick, title, children }) {
       onMouseDown={(e) => e.preventDefault()}
       onClick={onClick}
       className={cn(
-        "flex size-8 items-center justify-center rounded-md text-gray-500 transition hover:bg-gray-100",
-        active && "bg-primary/5 text-primary"
+        "flex size-8 items-center justify-center rounded-md text-gray-500 transition duration-150 hover:bg-gray-100",
+        active && "bg-primary/5 text-primary shadow-glow-sm"
       )}
     >
       {children}
