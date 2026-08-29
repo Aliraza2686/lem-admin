@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import SidebarLayout from "../layouts/sidebar-layout/SidebarLayout";
-import PageTitle from "../components/ui/molecules/PageTitle";
 import { useToast } from "../components/ui/toast/ToastProvider";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import { listArticles } from "../api/articles";
@@ -18,6 +17,7 @@ import VisitorsGauge from "./dashboard/VisitorsGauge";
 import QuickActionsPanel from "./dashboard/QuickActionsPanel";
 import QuickNavTiles from "./dashboard/QuickNavTiles";
 import RecentItemsRow from "./dashboard/RecentItemsRow";
+import NeedsAttentionPanel from "./dashboard/NeedsAttentionPanel";
 import { bucketVisitors, computePeriodChange, detectSpikes, recentlyUpdated } from "./dashboard/dashboardUtils";
 
 const VISITOR_SAMPLE_LIMIT = 1000;
@@ -113,14 +113,15 @@ const Dashboard = () => {
     () => recentlyUpdated(articles.filter((a) => a.status === "published"), "createdAt", 5),
     [articles]
   );
-  const recentAnyArticles = useMemo(() => recentlyUpdated(articles, "createdAt", 5), [articles]);
   const recentProducts = useMemo(() => recentlyUpdated(products, "updatedAt", 5), [products]);
+  // Wider slices specifically for the "Recently added" strips — ActivityFeed
+  // and the spotlight card stay on the tighter 5-item feeds above.
+  const recentArticlesRow = useMemo(() => recentlyUpdated(articles, "createdAt", 10), [articles]);
+  const recentProductsRow = useMemo(() => recentlyUpdated(products, "updatedAt", 10), [products]);
   const spotlightArticle = recentPublishedArticles[0] || articles[0] || null;
 
   return (
     <SidebarLayout>
-      <PageTitle title="Dashboard" path={[{ name: "Dashboard", href: "/" }]} />
-
       <MotionConfig reducedMotion="user">
         <motion.div
           variants={containerVariants}
@@ -168,8 +169,27 @@ const Dashboard = () => {
           </motion.div>
 
           <motion.div variants={containerVariants}>
-            <h2 className="mb-3 px-1 text-sm font-semibold text-white">Recently added</h2>
-            <RecentItemsRow products={recentProducts} articles={recentAnyArticles} loading={loading} />
+            <NeedsAttentionPanel articles={articles} products={products} loading={loading} />
+          </motion.div>
+
+          <motion.div variants={containerVariants}>
+            <h2 className="mb-3 px-1 text-sm font-semibold text-white">Recently added products</h2>
+            <RecentItemsRow
+              products={recentProductsRow}
+              articles={[]}
+              loading={loading}
+              emptyLabel="No products yet — add your first one above."
+            />
+          </motion.div>
+
+          <motion.div variants={containerVariants}>
+            <h2 className="mb-3 px-1 text-sm font-semibold text-white">Recently added articles</h2>
+            <RecentItemsRow
+              products={[]}
+              articles={recentArticlesRow}
+              loading={loading}
+              emptyLabel="No articles yet — write your first one above."
+            />
           </motion.div>
 
           <motion.div variants={containerVariants} className="grid grid-cols-1 gap-4 lg:grid-cols-3">

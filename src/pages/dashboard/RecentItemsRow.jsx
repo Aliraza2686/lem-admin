@@ -54,11 +54,11 @@ function ItemCard({ kind, cover, title, meta, viewHref, editHref }) {
   );
 }
 
-export default function RecentItemsRow({ products, articles, loading }) {
+export default function RecentItemsRow({ products, articles, loading, emptyLabel = "Nothing added yet — use Quick actions above to get started." }) {
   if (loading) {
     return (
       <div className="flex gap-4 overflow-hidden">
-        {Array.from({ length: 4 }).map((_, i) => (
+        {Array.from({ length: 6 }).map((_, i) => (
           <div key={i} className="dash-panel h-48 w-56 shrink-0 animate-pulse rounded-2xl" />
         ))}
       </div>
@@ -86,14 +86,12 @@ export default function RecentItemsRow({ products, articles, loading }) {
       editHref: `/articles/${a.slug}/edit`,
       sortAt: a.createdAt,
     })),
-  ]
-    .sort((a, b) => new Date(b.sortAt || 0) - new Date(a.sortAt || 0))
-    .slice(0, 8);
+  ].sort((a, b) => new Date(b.sortAt || 0) - new Date(a.sortAt || 0));
 
   if (items.length === 0) {
     return (
       <div className="dash-panel flex h-24 items-center justify-center rounded-2xl text-sm text-white/40">
-        Nothing added yet — use Quick actions above to get started.
+        {emptyLabel}
       </div>
     );
   }

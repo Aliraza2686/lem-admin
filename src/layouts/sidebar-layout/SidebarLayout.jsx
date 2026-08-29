@@ -51,6 +51,12 @@ export default function SidebarLayout({ children }) {
   const location = useLocation()
   const navigate = useNavigate()
 
+  // The dashboard opts into the dark "cockpit" theme (see dash-shell/dash-panel
+  // in index.css); every other route keeps the light admin chrome. Driven off
+  // the route so the frame around <main> — navbar, padding, background — reads
+  // as one continuous dark surface instead of a dark card floating in a light one.
+  const isDarkRoute = location?.pathname?.includes('dashboard')
+
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: location?.pathname?.includes('dashboard') },
     { name: 'Products', href: '/products', icon: CubeIcon, current: location?.pathname?.includes('products') },
@@ -133,14 +139,30 @@ export default function SidebarLayout({ children }) {
         </div>
 
         {/* MAIN CONTENT */}
-        <div className={collapsed ? 'lg:pl-20' : 'lg:pl-72'}>
-          <div className="glass-panel sticky top-0 z-40 flex h-16 items-center rounded-none border-x-0 border-t-0 px-4">
-            <button onClick={() => setSidebarOpen(true)} className="text-gray-500 lg:hidden">
+        <div
+          className={classNames(
+            collapsed ? 'lg:pl-20' : 'lg:pl-72',
+            'min-h-screen transition-colors duration-300',
+            isDarkRoute && 'bg-primary-deep'
+          )}
+        >
+          <div
+            className={classNames(
+              'sticky top-0 z-40 flex h-16 items-center rounded-none border-x-0 border-t-0 px-4 transition-colors duration-300',
+              isDarkRoute ? 'border-b border-white/10 bg-primary-deep/80 backdrop-blur-xl' : 'glass-panel'
+            )}
+          >
+            <button onClick={() => setSidebarOpen(true)} className={classNames('lg:hidden', isDarkRoute ? 'text-white/60' : 'text-gray-500')}>
               <Bars3Icon className="size-6" />
             </button>
 
             <div className="flex flex-1 items-center justify-end gap-x-4">
-              <button className="rounded-full p-1.5 text-gray-500 transition-colors duration-150 hover:bg-primary/5 hover:text-primary">
+              <button
+                className={classNames(
+                  'rounded-full p-1.5 transition-colors duration-150',
+                  isDarkRoute ? 'text-white/50 hover:bg-white/10 hover:text-white' : 'text-gray-500 hover:bg-primary/5 hover:text-primary'
+                )}
+              >
                 <BellIcon className="size-5" />
               </button>
 
@@ -148,17 +170,27 @@ export default function SidebarLayout({ children }) {
                 <MenuButton className="block rounded-full outline-none transition-shadow duration-200 focus-visible:shadow-glow-sm">
                   <img
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
-                    className="size-8 rounded-full ring-2 ring-primary/10"
+                    className={classNames('size-8 rounded-full ring-2', isDarkRoute ? 'ring-white/15' : 'ring-primary/10')}
                   />
                 </MenuButton>
 
                 <MenuItems
                   transition
-                  className="glass-panel absolute right-0 mt-2 w-36 origin-top-right rounded-lg p-1 shadow-glass-md transition duration-150 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+                  className={classNames(
+                    'absolute right-0 mt-2 w-36 origin-top-right rounded-lg p-1 transition duration-150 ease-out data-[closed]:scale-95 data-[closed]:opacity-0',
+                    isDarkRoute ? 'glass-panel-dark shadow-glass-lg' : 'glass-panel shadow-glass-md'
+                  )}
                 >
                   {userNavigation?.map((item) => (
                     <MenuItem key={item?.name} onClick={() => item?.onClick?.()}>
-                      <div className="block rounded-md px-3 py-2 text-sm text-gray-700 transition-colors duration-150 data-[focus]:bg-primary/5 data-[focus]:text-primary">
+                      <div
+                        className={classNames(
+                          'block rounded-md px-3 py-2 text-sm transition-colors duration-150',
+                          isDarkRoute
+                            ? 'text-white/70 data-[focus]:bg-white/10 data-[focus]:text-white'
+                            : 'text-gray-700 data-[focus]:bg-primary/5 data-[focus]:text-primary'
+                        )}
+                      >
                         {item.name}
                       </div>
                     </MenuItem>
@@ -168,7 +200,7 @@ export default function SidebarLayout({ children }) {
             </div>
           </div>
 
-          <main className="px-6 py-10">{children}</main>
+          <main className={classNames('px-6 py-10', isDarkRoute && 'min-h-[calc(100vh-4rem)]')}>{children}</main>
         </div>
       </div>
     </>
