@@ -65,16 +65,16 @@ export default function GalleryUpload({ existingGallery = [], stagedFiles = [], 
           addFiles(e.dataTransfer.files);
         }}
         onClick={() => inputRef.current?.click()}
-        animate={dragOver ? { scale: 1.015, borderColor: "#6366f1" } : { scale: 1, borderColor: "#d1d5db" }}
+        animate={dragOver ? { scale: 1.015, borderColor: "#a88940" } : { scale: 1, borderColor: "#d1d5db" }}
         transition={{ duration: 0.15 }}
         className={cn(
           "flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed bg-gray-50/50 px-4 py-6 text-center",
-          dragOver && "bg-indigo-50/60"
+          dragOver && "bg-primary/5/60"
         )}
       >
-        <UploadCloud className={cn("size-6", dragOver ? "text-indigo-500" : "text-gray-400")} />
+        <UploadCloud className={cn("size-6", dragOver ? "text-primary" : "text-gray-400")} />
         <p className="text-sm text-gray-500">
-          <span className="font-medium text-indigo-600">Click to upload</span> or drag and drop
+          <span className="font-medium text-primary">Click to upload</span> or drag and drop
           {existingGallery.length > 0 ? " a replacement gallery" : " gallery images"}
         </p>
         <input

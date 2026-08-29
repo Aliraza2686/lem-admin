@@ -52,7 +52,7 @@ export default function ProductFormPage({ mode }) {
         <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-gray-200 py-20 text-center">
           <AlertTriangle className="size-8 text-red-400" />
           <p className="text-sm text-gray-600">{error}</p>
-          <button onClick={() => navigate("/products")} className="text-sm font-medium text-indigo-600 hover:underline">
+          <button onClick={() => navigate("/products")} className="text-sm font-medium text-primary hover:underline">
             Back to products
           </button>
         </div>

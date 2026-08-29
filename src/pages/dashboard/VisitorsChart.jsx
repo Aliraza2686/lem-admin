@@ -36,7 +36,7 @@ export default function VisitorsChart({ buckets, range, onRangeChange, loading, 
               onClick={() => onRangeChange(key)}
               className={`cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
                 range === key
-                  ? "bg-white text-indigo-600 shadow-sm dark:bg-gray-900 dark:text-indigo-400"
+                  ? "bg-white text-primary shadow-sm dark:bg-gray-900 dark:text-primary"
                   : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
               }`}
             >

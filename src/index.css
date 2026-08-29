@@ -1,6 +1,21 @@
 @import "tailwindcss";
 
 @theme {
+  /*
+    Brand tokens — Lumina Earth Minerals. Mirrors the public site's palette
+    (lem-frontend/src/index.css) so the admin panel and public site read as
+    one product instead of admin defaulting to generic Tailwind indigo/gray.
+  */
+  --color-primary: #0d1f35;
+  --color-primary-hover: #132844;
+  --color-primary-deep: #051223;
+  --color-accent: #a88940;
+  --color-accent-light: #c8aa64;
+  --color-accent-dark: #8a6f3a;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+
   --animate-shimmer: shimmer 1.6s infinite;
 }
 

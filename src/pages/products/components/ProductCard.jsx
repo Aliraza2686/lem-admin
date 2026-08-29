@@ -25,7 +25,7 @@ export default function ProductCard({ product, onDelete, selected, onToggleSelec
             type="checkbox"
             checked={selected}
             onChange={() => onToggleSelect(product.id)}
-            className="size-4.5 accent-indigo-600"
+            className="size-4.5 accent-primary"
           />
         </label>
       )}
@@ -66,7 +66,7 @@ export default function ProductCard({ product, onDelete, selected, onToggleSelec
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
             <Link to={`/products/${product.id}`}>
-              <h3 className="truncate text-sm font-semibold text-gray-900 hover:text-indigo-600">{product.name}</h3>
+              <h3 className="truncate text-sm font-semibold text-gray-900 hover:text-primary">{product.name}</h3>
             </Link>
             <p className="mt-0.5 truncate text-xs text-gray-500">{product.origin || "Origin not set"}</p>
           </div>
@@ -74,7 +74,7 @@ export default function ProductCard({ product, onDelete, selected, onToggleSelec
 
         <div className="mt-3 flex flex-wrap items-center gap-1.5">
           {product.category && (
-            <span className="rounded-full bg-indigo-50 px-2 py-0.5 text-[11px] font-medium text-indigo-600">
+            <span className="rounded-full bg-primary/5 px-2 py-0.5 text-[11px] font-medium text-primary">
               {product.category}
             </span>
           )}
@@ -90,7 +90,7 @@ export default function ProductCard({ product, onDelete, selected, onToggleSelec
 
 function ActionButton({ to, onClick, icon: Icon, label, danger }) {
   const classes = `flex size-8 items-center justify-center rounded-lg bg-white/95 shadow-sm ring-1 ring-gray-200 backdrop-blur transition hover:scale-110 ${
-    danger ? "text-red-500 hover:bg-red-50" : "text-gray-600 hover:bg-indigo-50 hover:text-indigo-600"
+    danger ? "text-red-500 hover:bg-red-50" : "text-gray-600 hover:bg-primary/5 hover:text-primary"
   }`;
   if (to) {
     return (

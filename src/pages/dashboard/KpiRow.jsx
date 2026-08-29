@@ -21,7 +21,7 @@ function KpiCard({ icon: Icon, label, value, delta, loading, index }) {
       className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white/80 p-5 shadow-sm backdrop-blur transition-shadow hover:shadow-lg dark:border-gray-800 dark:bg-gray-900/80"
     >
       <div className="flex items-center justify-between">
-        <span className="flex size-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400">
+        <span className="flex size-10 items-center justify-center rounded-xl bg-primary/5 text-primary dark:bg-primary/10 dark:text-primary">
           <Icon className="size-5" />
         </span>
         {hasDelta && (

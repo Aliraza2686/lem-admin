@@ -73,7 +73,7 @@ export default function TopArticles({ articles, loading, reduced }) {
               <li key={a.id}>
                 <Link
                   to={`/articles/${a.slug}`}
-                  className="flex items-center gap-3 py-2 text-sm transition-colors hover:text-indigo-600"
+                  className="flex items-center gap-3 py-2 text-sm transition-colors hover:text-primary"
                 >
                   <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-gray-100 text-[11px] font-semibold text-gray-500 dark:bg-gray-800 dark:text-gray-400">
                     {i + 1}

@@ -46,7 +46,7 @@ export default function ArrayField({ label, values = [], onChange, placeholder, 
       <button
         type="button"
         onClick={add}
-        className="flex w-fit items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-medium text-indigo-600 transition hover:bg-indigo-50"
+        className="flex w-fit items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-medium text-primary transition hover:bg-primary/5"
       >
         <Plus className="size-3.5" />
         Add {label ? label.toLowerCase().replace(/s$/, "") : "item"}

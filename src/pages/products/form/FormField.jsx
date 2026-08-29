@@ -30,5 +30,5 @@ export default function FormField({ label, error, hint, required, children, clas
 }
 
 export const inputClass =
-  "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100";
+  "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/10";
 export const errorInputClass = "border-red-300 focus:border-red-400 focus:ring-red-100";

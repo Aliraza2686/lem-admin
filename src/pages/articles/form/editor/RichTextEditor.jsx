@@ -93,7 +93,7 @@ function InsertImageModal({ open, onClose, onInsert, galleryOptions }) {
                     onInsert(img.url, img.caption || "");
                     onClose();
                   }}
-                  className="aspect-square overflow-hidden rounded-lg border border-gray-200 hover:ring-2 hover:ring-indigo-300"
+                  className="aspect-square overflow-hidden rounded-lg border border-gray-200 hover:ring-2 hover:ring-primary/30"
                 >
                   <img src={img.url} alt="" className="h-full w-full object-cover" />
                 </button>
@@ -106,7 +106,7 @@ function InsertImageModal({ open, onClose, onInsert, galleryOptions }) {
           <button type="button" onClick={onClose} className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50">
             Cancel
           </button>
-          <button type="button" onClick={submit} className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">
+          <button type="button" onClick={submit} className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-hover">
             Insert
           </button>
         </div>
@@ -153,7 +153,7 @@ const editorConfig = {
 export default function RichTextEditor({ articleKey, initialHtml, onChangeHtml, galleryOptions }) {
   return (
     <LexicalComposer key={articleKey} initialConfig={editorConfig}>
-      <div className="overflow-hidden rounded-xl border border-gray-300 focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-100">
+      <div className="overflow-hidden rounded-xl border border-gray-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10">
         <ImageInsertTrigger galleryOptions={galleryOptions} />
         <div className="relative">
           <RichTextPlugin

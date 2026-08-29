@@ -40,8 +40,8 @@ export default function VisitorsTable() {
   }, [page])
 
   return (
-    <div className="bg-white rounded-lg border border-[#979797]/30 p-4">
-      {/* <h2 className="text-lg font-semibold mb-4 text-[#979797]">
+    <div className="bg-white rounded-lg border border-[#57534e]/30 p-4">
+      {/* <h2 className="text-lg font-semibold mb-4 text-[#57534e]">
         Visitors
       </h2> */}
 
@@ -54,7 +54,7 @@ export default function VisitorsTable() {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-left border-b border-[#979797]/30 text-[#979797]">
+            <tr className="text-left border-b border-[#57534e]/30 text-[#57534e]">
               <th className="py-2">IP</th>
               <th>Country</th>
               <th>City</th>
@@ -71,13 +71,13 @@ export default function VisitorsTable() {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="10" className="py-6 text-center text-[#979797]">
+                <td colSpan="10" className="py-6 text-center text-[#57534e]">
                   Loading...
                 </td>
               </tr>
             ) : data.length === 0 ? (
               <tr>
-                <td colSpan="10" className="py-6 text-center text-[#979797]">
+                <td colSpan="10" className="py-6 text-center text-[#57534e]">
                   No visitors found
                 </td>
               </tr>
@@ -85,7 +85,7 @@ export default function VisitorsTable() {
               data.map((v) => (
                 <tr
                   key={v._id}
-                  className="border-b border-[#979797]/20 hover:bg-[#b695f8]/10 transition"
+                  className="border-b border-[#57534e]/20 hover:bg-[#0d1f35]/10 transition"
                 >
                   <td className="py-2">{v.ip}</td>
                   <td>{v.country}</td>
@@ -106,7 +106,7 @@ export default function VisitorsTable() {
                       <a
                         href={v.referrer}
                         target="_blank"
-                        className="text-[#b695f8] hover:underline"
+                        className="text-[#0d1f35] hover:underline"
                       >
                         {v.referrer}
                       </a>

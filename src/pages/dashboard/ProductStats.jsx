@@ -44,7 +44,7 @@ export default function ProductStats({ products, total, loading }) {
                     initial={{ width: 0 }}
                     animate={{ width: `${(b.count / maxCount) * 100}%` }}
                     transition={{ duration: 0.7, ease: "easeOut" }}
-                    className="h-full rounded-full bg-indigo-500"
+                    className="h-full rounded-full bg-primary"
                   />
                 </div>
                 <span className="w-6 shrink-0 text-right text-xs font-medium text-gray-500 dark:text-gray-400">
@@ -59,7 +59,7 @@ export default function ProductStats({ products, total, loading }) {
               <li key={p.id}>
                 <Link
                   to={`/products/${p.id}`}
-                  className="flex items-center gap-3 py-2.5 text-sm transition-colors hover:text-indigo-600"
+                  className="flex items-center gap-3 py-2.5 text-sm transition-colors hover:text-primary"
                 >
                   <span className="min-w-0 flex-1 truncate text-gray-700 dark:text-gray-300">{p.name}</span>
                   <span className="flex shrink-0 items-center gap-1 text-xs text-gray-400">

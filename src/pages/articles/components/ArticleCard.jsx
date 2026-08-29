@@ -20,7 +20,7 @@ export default function ArticleCard({ article, onDelete, selected, onToggleSelec
     >
       {selectMode && (
         <label className="absolute top-3 left-3 z-10">
-          <input type="checkbox" checked={selected} onChange={() => onToggleSelect(article._id)} className="size-4.5 accent-indigo-600" />
+          <input type="checkbox" checked={selected} onChange={() => onToggleSelect(article._id)} className="size-4.5 accent-primary" />
         </label>
       )}
 
@@ -65,12 +65,12 @@ export default function ArticleCard({ article, onDelete, selected, onToggleSelec
 
       <div className="p-4">
         {article.category && (
-          <span className="mb-1.5 inline-block rounded-full bg-indigo-50 px-2 py-0.5 text-[11px] font-medium text-indigo-600">
+          <span className="mb-1.5 inline-block rounded-full bg-primary/5 px-2 py-0.5 text-[11px] font-medium text-primary">
             {article.category}
           </span>
         )}
         <Link to={`/articles/${article.slug}`}>
-          <h3 className="line-clamp-2 text-sm font-semibold text-gray-900 hover:text-indigo-600">{article.title}</h3>
+          <h3 className="line-clamp-2 text-sm font-semibold text-gray-900 hover:text-primary">{article.title}</h3>
         </Link>
         <p className="mt-1 line-clamp-2 text-xs text-gray-500">{article.excerpt}</p>
 
@@ -97,7 +97,7 @@ export default function ArticleCard({ article, onDelete, selected, onToggleSelec
 
 function ActionButton({ to, onClick, icon: Icon, label, danger }) {
   const classes = `flex size-8 items-center justify-center rounded-lg bg-white/95 shadow-sm ring-1 ring-gray-200 backdrop-blur transition hover:scale-110 ${
-    danger ? "text-red-500 hover:bg-red-50" : "text-gray-600 hover:bg-indigo-50 hover:text-indigo-600"
+    danger ? "text-red-500 hover:bg-red-50" : "text-gray-600 hover:bg-primary/5 hover:text-primary"
   }`;
   if (to) {
     return (

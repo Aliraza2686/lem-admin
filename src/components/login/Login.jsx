@@ -76,7 +76,7 @@ export default function Login() {
           {/* Email */}
           <div>
             <label className="text-sm text-gray-600">Email</label>
-            <div className="flex items-center border rounded-lg px-3 mt-1 focus-within:ring-2 focus-within:ring-black">
+            <div className="flex items-center border rounded-lg px-3 mt-1 focus-within:ring-2 focus-within:ring-primary">
               <Mail className="w-4 h-4 text-gray-400" />
               <input
                 type="email"
@@ -95,7 +95,7 @@ export default function Login() {
           {/* Password */}
           <div>
             <label className="text-sm text-gray-600">Password</label>
-            <div className="flex items-center border rounded-lg px-3 mt-1 focus-within:ring-2 focus-within:ring-black">
+            <div className="flex items-center border rounded-lg px-3 mt-1 focus-within:ring-2 focus-within:ring-primary">
               <Lock className="w-4 h-4 text-gray-400" />
               <input
                 type="password"
@@ -122,7 +122,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-2 hover:bg-gray-800 transition"
+            className="w-full bg-primary text-white py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-2 hover:bg-primary-hover transition disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading && <Loader2 className="w-4 h-4 animate-spin" />}
             {loading ? "Signing in..." : "Sign In"}

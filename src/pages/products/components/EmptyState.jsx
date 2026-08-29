@@ -10,7 +10,7 @@ export default function EmptyState({ filtered }) {
       transition={{ duration: 0.3 }}
       className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 bg-white/60 px-6 py-20 text-center"
     >
-      <div className="flex size-16 items-center justify-center rounded-full bg-indigo-50 text-indigo-500">
+      <div className="flex size-16 items-center justify-center rounded-full bg-primary/5 text-primary">
         {filtered ? <SearchX className="size-8" /> : <PackagePlus className="size-8" />}
       </div>
       <h3 className="mt-4 text-base font-semibold text-gray-900">
@@ -24,7 +24,7 @@ export default function EmptyState({ filtered }) {
       {!filtered && (
         <Link
           to="/products/new"
-          className="mt-5 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700"
+          className="mt-5 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-hover"
         >
           <PackagePlus className="size-4" />
           Add your first product

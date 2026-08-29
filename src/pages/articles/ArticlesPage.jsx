@@ -221,13 +221,13 @@ export default function ArticlesPage() {
               setSelected(new Set());
             }}
             className={`flex items-center gap-1.5 rounded-lg border px-3 py-2 text-sm font-medium transition ${
-              selectMode ? "border-indigo-300 bg-indigo-50 text-indigo-700" : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
+              selectMode ? "border-primary/30 bg-primary/5 text-primary-hover" : "border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
             }`}
           >
             <CheckSquare className="size-4" />
             Select
           </button>
-          <Link to="/articles/new" className="flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700">
+          <Link to="/articles/new" className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-hover">
             <PlusCircle className="size-4" />
             Add Article
           </Link>

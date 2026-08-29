@@ -144,7 +144,7 @@ export default function SidebarLayout({ children }) {
                             'group flex items-center rounded-md p-2 text-sm font-semibold',
                             collapsed ? 'justify-center' : 'gap-x-3',
                             item.current
-                              ? 'bg-gray-100 text-indigo-600'
+                              ? 'bg-gray-100 text-primary'
                               : 'text-gray-700 hover:bg-gray-100'
                           )}
                         >
@@ -201,7 +201,7 @@ export default function SidebarLayout({ children }) {
 
         {/* MAIN CONTENT */}
         <div className={collapsed ? 'lg:pl-20' : 'lg:pl-72'}>
-          <div className="sticky top-0 z-40 flex h-16 items-center border-b border-[#ccc] bg-white px-4 ">
+          <div className="sticky top-0 z-40 flex h-16 items-center border-b border-gray-200 bg-white px-4 ">
             <button onClick={() => setSidebarOpen(true)} className="lg:hidden">
               <Bars3Icon className="size-6" />
             </button>

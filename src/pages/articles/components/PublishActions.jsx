@@ -55,7 +55,7 @@ export default function PublishActions({ articleId, status, title, compact, onCh
                 compact
                   ? "size-8 justify-center text-gray-500 hover:bg-gray-100"
                   : "px-3 py-2 text-sm",
-                !compact && t.tone === "primary" && "bg-indigo-600 text-white hover:bg-indigo-700",
+                !compact && t.tone === "primary" && "bg-primary text-white hover:bg-primary-hover",
                 !compact && t.tone === "muted" && "border border-gray-200 text-gray-600 hover:bg-gray-50"
               )}
             >
@@ -79,7 +79,7 @@ export default function PublishActions({ articleId, status, title, compact, onCh
             <button
               onClick={runTransition}
               disabled={loading}
-              className="flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-50"
+              className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-50"
             >
               {loading && <Loader2 className="size-4 animate-spin" />}
               Confirm {pending?.label}

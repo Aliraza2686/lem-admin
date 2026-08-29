@@ -45,8 +45,8 @@ export default function Pagination({
         disabled={currentPage === 1}
         className="px-3 py-1 rounded-md text-sm border transition"
         style={{
-          borderColor: '#979797',
-          color: currentPage === 1 ? '#979797' : '#b695f8',
+          borderColor: '#57534e',
+          color: currentPage === 1 ? '#57534e' : '#0d1f35',
           background: '#fff',
           opacity: currentPage === 1 ? 0.5 : 1,
         }}
@@ -57,7 +57,7 @@ export default function Pagination({
       {/* Pages */}
       {pages.map((p, i) =>
         p === '...' ? (
-          <span key={i} className="px-2 text-[#979797]">
+          <span key={i} className="px-2 text-[#57534e]">
             ...
           </span>
         ) : (
@@ -66,9 +66,9 @@ export default function Pagination({
             onClick={() => onPageChange(p)}
             className="px-3 py-1 rounded-md text-sm border transition"
             style={{
-              borderColor: p === currentPage ? '#b695f8' : '#979797',
-              background: p === currentPage ? '#b695f8' : '#fff',
-              color: p === currentPage ? '#fff' : '#979797',
+              borderColor: p === currentPage ? '#0d1f35' : '#57534e',
+              background: p === currentPage ? '#0d1f35' : '#fff',
+              color: p === currentPage ? '#fff' : '#57534e',
             }}
           >
             {p}
@@ -82,8 +82,8 @@ export default function Pagination({
         disabled={currentPage === totalPages}
         className="px-3 py-1 rounded-md text-sm border transition"
         style={{
-          borderColor: '#979797',
-          color: currentPage === totalPages ? '#979797' : '#b695f8',
+          borderColor: '#57534e',
+          color: currentPage === totalPages ? '#57534e' : '#0d1f35',
           background: '#fff',
           opacity: currentPage === totalPages ? 0.5 : 1,
         }}

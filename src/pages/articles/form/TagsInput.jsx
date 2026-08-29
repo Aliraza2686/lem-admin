@@ -24,7 +24,7 @@ export default function TagsInput({ values = [], onChange, placeholder = "Add a 
   const remove = (tag) => onChange(values.filter((t) => t !== tag));
 
   return (
-    <div className="flex flex-wrap items-center gap-1.5 rounded-lg border border-gray-300 px-2 py-1.5 focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-100">
+    <div className="flex flex-wrap items-center gap-1.5 rounded-lg border border-gray-300 px-2 py-1.5 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10">
       <AnimatePresence initial={false}>
         {values.map((tag) => (
           <motion.span
@@ -33,10 +33,10 @@ export default function TagsInput({ values = [], onChange, placeholder = "Add a 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="flex items-center gap-1 rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700"
+            className="flex items-center gap-1 rounded-full bg-primary/5 px-2.5 py-1 text-xs font-medium text-primary-hover"
           >
             {tag}
-            <button type="button" onClick={() => remove(tag)} className="rounded-full hover:bg-indigo-100">
+            <button type="button" onClick={() => remove(tag)} className="rounded-full hover:bg-primary/10">
               <X className="size-3" />
             </button>
           </motion.span>

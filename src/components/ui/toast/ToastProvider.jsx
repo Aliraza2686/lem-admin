@@ -14,7 +14,7 @@ const ICONS = {
 const ACCENTS = {
   success: "text-emerald-600 bg-emerald-50 border-emerald-200",
   error: "text-red-600 bg-red-50 border-red-200",
-  info: "text-indigo-600 bg-indigo-50 border-indigo-200",
+  info: "text-primary bg-primary/5 border-primary/20",
 };
 
 let idCounter = 0;
@@ -60,7 +60,7 @@ function ToastItem({ toast, onDismiss }) {
       </button>
 
       <motion.div
-        className={cn("absolute bottom-0 left-0 h-0.5", type === "error" ? "bg-red-400" : type === "success" ? "bg-emerald-400" : "bg-indigo-400")}
+        className={cn("absolute bottom-0 left-0 h-0.5", type === "error" ? "bg-red-400" : type === "success" ? "bg-emerald-400" : "bg-primary")}
         initial={{ width: "100%" }}
         animate={{ width: "0%" }}
         transition={{ duration: duration / 1000, ease: "linear" }}

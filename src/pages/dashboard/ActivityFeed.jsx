@@ -9,7 +9,7 @@ const cardVariants = {
 };
 
 const ICONS = {
-  article: { icon: Newspaper, className: "bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400" },
+  article: { icon: Newspaper, className: "bg-primary/5 text-primary dark:bg-primary/10 dark:text-primary" },
   product: { icon: Package, className: "bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400" },
   spike: { icon: Zap, className: "bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400" },
 };

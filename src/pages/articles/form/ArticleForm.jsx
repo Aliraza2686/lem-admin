@@ -183,14 +183,14 @@ export default function ArticleForm({ mode, initialArticle }) {
           <button
             type="button"
             onClick={() => setView("edit")}
-            className={cn("flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium", view === "edit" ? "bg-white text-indigo-700 shadow-sm" : "text-gray-500")}
+            className={cn("flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium", view === "edit" ? "bg-white text-primary-hover shadow-sm" : "text-gray-500")}
           >
             <Pencil className="size-3.5" /> Edit
           </button>
           <button
             type="button"
             onClick={() => setView("preview")}
-            className={cn("flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium", view === "preview" ? "bg-white text-indigo-700 shadow-sm" : "text-gray-500")}
+            className={cn("flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium", view === "preview" ? "bg-white text-primary-hover shadow-sm" : "text-gray-500")}
           >
             <Eye className="size-3.5" /> Preview
           </button>
@@ -263,7 +263,7 @@ export default function ArticleForm({ mode, initialArticle }) {
                   type="checkbox"
                   checked={values.isFeatured}
                   onChange={(e) => set({ isFeatured: e.target.checked })}
-                  className="size-4 accent-indigo-600"
+                  className="size-4 accent-primary"
                 />
                 Feature this article
               </label>
@@ -318,7 +318,7 @@ export default function ArticleForm({ mode, initialArticle }) {
             <button
               type="submit"
               disabled={submitting || !valid}
-              className="flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-40"
+              className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-40"
             >
               {submitting ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
               {submitting ? "Saving..." : isEdit ? "Save changes" : "Create article"}

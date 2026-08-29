@@ -20,7 +20,7 @@ export default function ViewToggle({ value, onChange }) {
             onClick={() => onChange(opt.key)}
             className={cn(
               "relative z-10 flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
-              active ? "text-indigo-700" : "text-gray-500 hover:text-gray-700"
+              active ? "text-primary-hover" : "text-gray-500 hover:text-gray-700"
             )}
           >
             {active && (

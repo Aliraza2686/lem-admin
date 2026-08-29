@@ -65,7 +65,7 @@ export default function ProductDetailPage() {
         <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-gray-200 py-20 text-center">
           <AlertTriangle className="size-8 text-red-400" />
           <p className="text-sm text-gray-600">{error}</p>
-          <button onClick={() => navigate("/products")} className="text-sm font-medium text-indigo-600 hover:underline">
+          <button onClick={() => navigate("/products")} className="text-sm font-medium text-primary hover:underline">
             Back to products
           </button>
         </div>
@@ -113,7 +113,7 @@ export default function ProductDetailPage() {
           >
             <div className="flex flex-wrap items-center gap-2">
               {product.category && (
-                <span className="rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-600">
+                <span className="rounded-full bg-primary/5 px-2.5 py-1 text-xs font-medium text-primary">
                   {product.category}
                 </span>
               )}
@@ -130,7 +130,7 @@ export default function ProductDetailPage() {
 
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
             <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold text-gray-900">
-              <Layers className="size-4 text-indigo-500" />
+              <Layers className="size-4 text-primary" />
               Variants ({product.variants?.length || 0})
             </h2>
             <div className="flex flex-col gap-4">
@@ -183,7 +183,7 @@ export default function ProductDetailPage() {
           {product.labReports?.length > 0 && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="rounded-2xl border border-gray-200 bg-white p-4">
               <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold text-gray-900">
-                <FlaskConical className="size-4 text-indigo-500" />
+                <FlaskConical className="size-4 text-primary" />
                 Lab Reports
               </h2>
               <div className="flex flex-col gap-2">

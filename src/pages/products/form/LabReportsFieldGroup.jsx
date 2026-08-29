@@ -58,7 +58,7 @@ export default function LabReportsFieldGroup({ reports = [], onChange }) {
       <button
         type="button"
         onClick={add}
-        className="flex w-fit items-center gap-1.5 rounded-lg border border-dashed border-gray-300 px-3 py-2 text-sm font-medium text-indigo-600 transition hover:bg-indigo-50"
+        className="flex w-fit items-center gap-1.5 rounded-lg border border-dashed border-gray-300 px-3 py-2 text-sm font-medium text-primary transition hover:bg-primary/5"
       >
         <Plus className="size-4" />
         Add lab report

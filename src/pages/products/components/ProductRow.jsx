@@ -22,7 +22,7 @@ export default function ProductRow({ product, onDelete, selected, onToggleSelect
           type="checkbox"
           checked={selected}
           onChange={() => onToggleSelect(product.id)}
-          className="size-4.5 shrink-0 accent-indigo-600"
+          className="size-4.5 shrink-0 accent-primary"
         />
       )}
 
@@ -38,14 +38,14 @@ export default function ProductRow({ product, onDelete, selected, onToggleSelect
 
       <div className="min-w-0 flex-1">
         <Link to={`/products/${product.id}`}>
-          <h3 className="truncate text-sm font-semibold text-gray-900 hover:text-indigo-600">{product.name}</h3>
+          <h3 className="truncate text-sm font-semibold text-gray-900 hover:text-primary">{product.name}</h3>
         </Link>
         <p className="truncate text-xs text-gray-500">{product.id}</p>
       </div>
 
       <div className="hidden w-32 shrink-0 sm:block">
         {product.category ? (
-          <span className="rounded-full bg-indigo-50 px-2 py-0.5 text-[11px] font-medium text-indigo-600">
+          <span className="rounded-full bg-primary/5 px-2 py-0.5 text-[11px] font-medium text-primary">
             {product.category}
           </span>
         ) : (
@@ -68,10 +68,10 @@ export default function ProductRow({ product, onDelete, selected, onToggleSelect
       <div className="hidden w-24 shrink-0 text-xs text-gray-400 xl:block">{formatDate(product.createdAt)}</div>
 
       <div className="flex shrink-0 gap-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-        <Link to={`/products/${product.id}`} title="View" className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-indigo-50 hover:text-indigo-600">
+        <Link to={`/products/${product.id}`} title="View" className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-primary/5 hover:text-primary">
           <Eye className="size-4" />
         </Link>
-        <Link to={`/products/${product.id}/edit`} title="Edit" className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-indigo-50 hover:text-indigo-600">
+        <Link to={`/products/${product.id}/edit`} title="Edit" className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-primary/5 hover:text-primary">
           <Pencil className="size-4" />
         </Link>
         <button title="Delete" onClick={() => onDelete(product)} className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600">

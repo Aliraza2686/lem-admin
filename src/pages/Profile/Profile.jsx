@@ -20,7 +20,7 @@ const Profile = () => {
 
       <div className='bg-white shadow-md rounded-xl p-5 my-5'>
         <div className='flex gap-5'>
-          <div className='w-32 h-32 bg-[#b695f8]/10 rounded-xl flex justify-center items-center'>
+          <div className='w-32 h-32 bg-[#0d1f35]/10 rounded-xl flex justify-center items-center'>
             <span className='text-2xl font-semibold'>
               {firstLetter} {lastLetter}
             </span>

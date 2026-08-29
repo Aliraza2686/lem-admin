@@ -24,7 +24,7 @@ export default function ArticleTable({ articles, onDelete, onDuplicate, selected
           <thead className="sticky top-0 z-10 bg-gray-50">
             <tr className="border-b border-gray-200 text-left text-xs font-semibold text-gray-500">
               <th className="w-10 px-4 py-3">
-                <input type="checkbox" checked={allSelected} onChange={() => onToggleSelectAll(articles.map((a) => a._id))} className="size-4 accent-indigo-600" />
+                <input type="checkbox" checked={allSelected} onChange={() => onToggleSelectAll(articles.map((a) => a._id))} className="size-4 accent-primary" />
               </th>
               <th className="w-14 px-2 py-3"></th>
               {COLUMNS.map((col) => (
@@ -53,10 +53,10 @@ export default function ArticleTable({ articles, onDelete, onDuplicate, selected
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0, transition: { delay: Math.min(i, 12) * 0.02 } }}
                     exit={{ opacity: 0, height: 0, transition: { duration: 0.22 } }}
-                    className={cn("border-b border-gray-100 last:border-0 hover:bg-indigo-50/30", selected.has(article._id) && "bg-indigo-50/50")}
+                    className={cn("border-b border-gray-100 last:border-0 hover:bg-primary/5/30", selected.has(article._id) && "bg-primary/5/50")}
                   >
                     <td className="px-4 py-2.5">
-                      <input type="checkbox" checked={selected.has(article._id)} onChange={() => onToggleSelect(article._id)} className="size-4 accent-indigo-600" />
+                      <input type="checkbox" checked={selected.has(article._id)} onChange={() => onToggleSelect(article._id)} className="size-4 accent-primary" />
                     </td>
                     <td className="px-2 py-2.5">
                       <Link to={`/articles/${article.slug}`} className="block size-10 overflow-hidden rounded-md bg-gray-100">
@@ -71,7 +71,7 @@ export default function ArticleTable({ articles, onDelete, onDuplicate, selected
                     </td>
                     <td className="px-3 py-2.5">
                       <div className="flex items-center gap-1.5">
-                        <Link to={`/articles/${article.slug}`} className="font-medium text-gray-900 hover:text-indigo-600 line-clamp-1 max-w-[280px]">
+                        <Link to={`/articles/${article.slug}`} className="font-medium text-gray-900 hover:text-primary line-clamp-1 max-w-[280px]">
                           {article.title}
                         </Link>
                         {article.isFeatured && <Star className="size-3 shrink-0 fill-amber-400 text-amber-400" />}
@@ -88,13 +88,13 @@ export default function ArticleTable({ articles, onDelete, onDuplicate, selected
                     <td className="px-3 py-2.5 whitespace-nowrap text-gray-500">{formatDate(article.createdAt)}</td>
                     <td className="px-3 py-2.5">
                       <div className="flex justify-end gap-1">
-                        <Link to={`/articles/${article.slug}`} title="View" className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-indigo-50 hover:text-indigo-600">
+                        <Link to={`/articles/${article.slug}`} title="View" className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-primary/5 hover:text-primary">
                           <Eye className="size-4" />
                         </Link>
-                        <Link to={`/articles/${article.slug}/edit`} title="Edit" className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-indigo-50 hover:text-indigo-600">
+                        <Link to={`/articles/${article.slug}/edit`} title="Edit" className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-primary/5 hover:text-primary">
                           <Pencil className="size-4" />
                         </Link>
-                        <button title="Duplicate" onClick={() => onDuplicate(article)} className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-indigo-50 hover:text-indigo-600">
+                        <button title="Duplicate" onClick={() => onDuplicate(article)} className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-primary/5 hover:text-primary">
                           <Copy className="size-4" />
                         </button>
                         <button title="Delete" onClick={() => onDelete(article)} className="flex size-8 items-center justify-center rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600">

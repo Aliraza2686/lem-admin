@@ -310,7 +310,7 @@ export default function ProductForm({ mode, initialProduct }) {
             <button
               type="submit"
               disabled={submitting || anyUploading || !valid}
-              className="flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-40"
+              className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-40"
             >
               {submitting ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
               {submitting ? "Saving..." : isEdit ? "Save changes" : "Create product"}

@@ -43,7 +43,7 @@ function ToolbarButton({ active, onClick, title, children }) {
       onClick={onClick}
       className={cn(
         "flex size-8 items-center justify-center rounded-md text-gray-500 transition hover:bg-gray-100",
-        active && "bg-indigo-50 text-indigo-600"
+        active && "bg-primary/5 text-primary"
       )}
     >
       {children}

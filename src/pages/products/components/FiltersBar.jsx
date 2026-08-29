@@ -35,14 +35,14 @@ export default function FiltersBar({
             value={search}
             onChange={(e) => onSearch(e.target.value)}
             placeholder="Search by name, id, origin, description..."
-            className="w-full rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+            className="w-full rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/10"
           />
         </div>
 
         <select
           value={category}
           onChange={(e) => onCategory(e.target.value)}
-          className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+          className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10"
         >
           <option value="">All categories</option>
           {categories.map((c) => (
@@ -55,7 +55,7 @@ export default function FiltersBar({
         <select
           value={origin}
           onChange={(e) => onOrigin(e.target.value)}
-          className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+          className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10"
         >
           <option value="">All origins</option>
           {origins.map((o) => (
@@ -70,7 +70,7 @@ export default function FiltersBar({
           <select
             value={sort}
             onChange={(e) => onSort(e.target.value)}
-            className="rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm text-gray-700 outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+            className="rounded-lg border border-gray-200 bg-white py-2 pr-3 pl-9 text-sm text-gray-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10"
           >
             {SORT_OPTIONS.map((s) => (
               <option key={s.value} value={s.value}>
@@ -95,12 +95,12 @@ export default function FiltersBar({
         <SlidersHorizontal className="size-3.5" />
         {resultCount} product{resultCount === 1 ? "" : "s"} match
         {category && (
-          <span className={cn("ml-1 rounded-full bg-indigo-50 px-2 py-0.5 text-indigo-600")}>
+          <span className={cn("ml-1 rounded-full bg-primary/5 px-2 py-0.5 text-primary")}>
             category: {category}
           </span>
         )}
         {origin && (
-          <span className="ml-1 rounded-full bg-indigo-50 px-2 py-0.5 text-indigo-600">origin: {origin}</span>
+          <span className="ml-1 rounded-full bg-primary/5 px-2 py-0.5 text-primary">origin: {origin}</span>
         )}
       </div>
     </div>
