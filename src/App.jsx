@@ -2,6 +2,7 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
+import Login from './components/login/Login';
 import Dashboard from './pages/Dashboard';
 import Visitors from './pages/Visitors';
 import Profile from './pages/Profile/Profile';
@@ -11,6 +12,7 @@ import ProductDetailPage from './pages/products/ProductDetailPage';
 import ArticlesPage from './pages/articles/ArticlesPage';
 import ArticleFormPage from './pages/articles/ArticleFormPage';
 import ArticleDetailPage from './pages/articles/ArticleDetailPage';
+import CertificationsPage from './pages/certifications/CertificationsPage';
 import { ToastProvider } from './components/ui/toast/ToastProvider';
 function App() {
 
@@ -21,6 +23,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/visitors" element={<Visitors />} />
             <Route path="/profile" element={<Profile />} />
@@ -32,6 +35,7 @@ function App() {
             <Route path="/articles/new" element={<ArticleFormPage mode="create" />} />
             <Route path="/articles/:slug/edit" element={<ArticleFormPage mode="edit" />} />
             <Route path="/articles/:slug" element={<ArticleDetailPage />} />
+            <Route path="/certifications" element={<CertificationsPage />} />
           </Routes>
         </BrowserRouter>
       </ToastProvider>
