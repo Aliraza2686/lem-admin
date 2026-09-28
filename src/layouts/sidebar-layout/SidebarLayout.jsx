@@ -29,6 +29,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   UserIcon,
+  PhotoIcon,
 } from '@heroicons/react/24/outline'
 import { Logo } from '../../components/ui/atoms/logo/Logo'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -63,6 +64,7 @@ export default function SidebarLayout({ children }) {
     { name: 'Products', href: '/products', icon: CubeIcon, current: location?.pathname?.includes('products') },
     { name: 'Articles', href: '/articles', icon: NewspaperIcon, current: location?.pathname?.includes('articles') },
     { name: 'Certifications', href: '/certifications', icon: CheckBadgeIcon, current: location?.pathname?.includes('certifications') },
+    { name: 'Gallery', href: '/gallery', icon: PhotoIcon, current: location?.pathname?.includes('gallery') },
     { name: 'Visitors', href: '/visitors', icon: UsersIcon, current: location?.pathname?.includes('visitors') },
     { name: 'Profile', href: '/profile', icon: UserIcon, current: location?.pathname?.includes('profile') },
     //   { name: 'Projects', href: '#', icon: FolderIcon, current: false },

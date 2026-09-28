@@ -13,6 +13,7 @@ import ArticlesPage from './pages/articles/ArticlesPage';
 import ArticleFormPage from './pages/articles/ArticleFormPage';
 import ArticleDetailPage from './pages/articles/ArticleDetailPage';
 import CertificationsPage from './pages/certifications/CertificationsPage';
+import GalleryPage from './pages/gallery/GalleryPage';
 import { ToastProvider } from './components/ui/toast/ToastProvider';
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/articles/:slug/edit" element={<ArticleFormPage mode="edit" />} />
             <Route path="/articles/:slug" element={<ArticleDetailPage />} />
             <Route path="/certifications" element={<CertificationsPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
           </Routes>
         </BrowserRouter>
       </ToastProvider>
